@@ -26,7 +26,7 @@ function HorizontalNav() {
         <Button
           color="inherit"
           component={RouterLink}
-          to="/home"
+          to="/features"
           sx={{ '&:hover': { backgroundColor: 'black' } }}
         >
           Features
@@ -34,7 +34,7 @@ function HorizontalNav() {
         <Button
           color="inherit"
           component={RouterLink}
-          to="/home"
+          to="/about"
           sx={{ '&:hover': { backgroundColor: 'black' } }}
         >
           About
@@ -42,7 +42,7 @@ function HorizontalNav() {
         <Button
           color="inherit"
           component={RouterLink}
-          to="/home"
+          to="/contact"
           sx={{ '&:hover': { backgroundColor: 'black' } }}
         >
           Contact
@@ -50,7 +50,7 @@ function HorizontalNav() {
         <Button
           color="inherit"
           component={RouterLink}
-          to="/home"
+          to="/login"
           sx={{ '&:hover': { backgroundColor: 'black' } }}
         >
           Log In
