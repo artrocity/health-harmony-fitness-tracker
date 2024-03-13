@@ -1,20 +1,15 @@
 // Import 3rd Party Libraries
 import React from 'react';
-
-// Import Components
-import HorizontalNav from '../HorizontalNav/HorizontalNav';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 function LoginView() {
   return (
     <>
-      <div className="container">
-        <div className="horizontal-nav-container">
-          <HorizontalNav />
-        </div>
-        <div className="landing-page-container">
-          <div>
-            <p>Login Page</p>
-          </div>
+      <div className="landing-page-container">
+        <div>
+          <Link to="/home">Logo</Link>
+          <p>Login Page</p>
+          <Link to="/register">Click Here To Register</Link>
         </div>
       </div>
     </>

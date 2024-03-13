@@ -13,7 +13,7 @@ function ContactView() {
         </div>
         <div className="landing-page-container">
           <div>
-            <p>About Page</p>
+            <p>Contact Page</p>
           </div>
         </div>
       </div>

@@ -17,6 +17,7 @@ import FeaturesView from '../FeaturesView/FeaturesView';
 import AboutView from '../AboutView/AboutView';
 import ContactView from '../ContactView/ContactView';
 import LoginView from '../LoginView/LoginView';
+import RegisterView from '../RegisterView/RegisterView';
 import View404 from '../View404/View404';
 
 // Import Custom CSS
@@ -52,6 +53,14 @@ function App() {
 
           <Route exact path="/contact">
             <ContactView />
+          </Route>
+
+          <Route exact path="/login">
+            <LoginView />
+          </Route>
+
+          <Route exact path="/register">
+            <RegisterView />
           </Route>
 
           <Route>

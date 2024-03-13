@@ -22,7 +22,7 @@ function HorizontalNav() {
           <Link to="/contact">Contact</Link>
         </li>
         <li>
-          <Link to="/contact">Log In</Link>
+          <Link to="/login">Log In</Link>
         </li>
       </ul>
     </nav>
