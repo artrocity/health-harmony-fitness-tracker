@@ -1,13 +1,24 @@
+// Import 3rd Party Libraries
 import React from 'react';
 
-function AboutPage() {
+// Import Components
+import HorizontalNav from '../HorizontalNav/HorizontalNav';
+
+function ContactView() {
   return (
-    <div className="container">
-      <div>
-        <p>Contact View</p>
+    <>
+      <div className="container">
+        <div className="horizontal-nav-container">
+          <HorizontalNav />
+        </div>
+        <div className="landing-page-container">
+          <div>
+            <p>About Page</p>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default AboutPage;
+export default ContactView;

@@ -4,7 +4,7 @@ import React from 'react';
 // Import Components
 import HorizontalNav from '../HorizontalNav/HorizontalNav';
 
-function AboutPage() {
+function LandingPage() {
   return (
     <>
       <div className="container">
@@ -21,4 +21,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default LandingPage;

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-function AboutPage() {
+function HorizontalNav() {
   return (
     <nav>
       <ul>
@@ -29,4 +29,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default HorizontalNav;

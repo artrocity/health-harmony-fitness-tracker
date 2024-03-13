@@ -1,6 +1,10 @@
+// Import 3rd Party Libraries
 import React from 'react';
 
-function AboutPage() {
+// Import Components
+import HorizontalNav from '../HorizontalNav/HorizontalNav';
+
+function View404() {
   return (
     <div className="container">
       <div>
@@ -10,4 +14,4 @@ function AboutPage() {
   );
 }
 
-export default AboutPage;
+export default View404;
