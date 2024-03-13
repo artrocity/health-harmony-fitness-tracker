@@ -1,3 +1,4 @@
+// Import 3rd party modules
 const express = require('express');
 const app = express();
 require('dotenv').config();
@@ -12,7 +13,7 @@ const userRouter = require('./routes/user.router');
 
 // Express Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static('build'));
 
 // Passport Session Configuration

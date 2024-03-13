@@ -1,5 +1,4 @@
-// No changes should be required in this file
-
+// Import Modules
 const cookieSession = require('cookie-session');
 const warnings = require('../constants/warnings');
 
