@@ -9,7 +9,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // Import Components
 import LandingPage from '../LandingPage/LandingPage';
@@ -17,7 +17,7 @@ import FeaturesView from '../FeaturesView/FeaturesView';
 import AboutView from '../AboutView/AboutView';
 import ContactView from '../ContactView/ContactView';
 import LoginView from '../LoginView/LoginView';
-import View404 from '../404/404';
+import View404 from '../View404/View404';
 
 // Import Custom CSS
 import './App.css';
@@ -34,7 +34,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
         <Switch>
           {/* Unprotected Routes */}
           <Redirect exact from="/" to="/home" />
