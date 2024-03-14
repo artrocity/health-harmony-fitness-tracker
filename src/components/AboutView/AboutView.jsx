@@ -23,6 +23,7 @@ function AboutView() {
       document.body.style.background = originalBackground;
     };
   }, []);
+
   return (
     <>
       <div className="container">
