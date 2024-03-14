@@ -87,6 +87,7 @@ function ContactView() {
                     value={newContact.name}
                     onChange={handleChange}
                     required
+                    style={{ backgroundColor: 'white' }}
                   ></TextField>
                 </Grid>
                 <Grid item>
@@ -98,6 +99,7 @@ function ContactView() {
                     value={newContact.email}
                     onChange={handleChange}
                     required
+                    style={{ backgroundColor: 'white' }}
                   ></TextField>
                 </Grid>
                 <Grid item>
@@ -111,6 +113,7 @@ function ContactView() {
                     value={newContact.message}
                     onChange={handleChange}
                     required
+                    style={{ backgroundColor: 'white' }}
                   ></TextField>
                 </Grid>
               </Grid>

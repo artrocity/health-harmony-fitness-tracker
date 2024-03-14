@@ -13,11 +13,11 @@
 }
 
 .contact-left-container {
-  background-color: #782cf6;
+  background-color: rgba(120, 44, 246, 0.9);
 }
 
 .contact-right-container {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
