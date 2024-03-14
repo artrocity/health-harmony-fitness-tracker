@@ -1,0 +1,44 @@
+body {
+  background-color: black;
+}
+
+/* body::after {
+  position: absolute;
+  left: 33.33%;
+  top: 0;
+  width: 66.67%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1;
+} */
+
+.about-page-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px auto;
+}
+
+.about-page-container div {
+  flex: 1;
+  text-align: center;
+  margin: 10px;
+}
+
+.about-page-header {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-page-paragraph {
+  font-size: 30px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-page-container img {
+  width: 100%;
+  height: auto;
+  min-height: 500px;
+  max-height: 500px;
+  object-fit: contain;
+}
