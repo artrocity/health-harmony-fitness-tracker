@@ -24,15 +24,21 @@ function LandingPage() {
             <h2 className="landing-page-header">Be Healthy</h2>
             <h2 className="landing-page-header">Be In Control</h2>
             <p className="landing-page-paragraph">
-              Health Harmony's fitness tracker empowers <br />
-              you to master your wellness journey. Our mission <br />
-              is to guide you in recognizing the vital connection <br /> between
-              your physical state and overall well-being. <br />
-              Through intuitive tracking and insightful analysis, <br />
-              we're dedicated to enhancing your health, one day at a time.
+              Health Harmony's mission is to guide you <br />
+              in recognizing the vital connection between your <br />
+              physical state and overall well-being. Through intuitive <br />
+              tracking and insightful analysis, we're dedicated <br />
+              to enhancing your health, one day at a time.
             </p>
             <div className="button-container">
               <Button
+                style={{ backgroundColor: '#98FB98', color: 'black' }}
+                sx={{
+                  transition: 'transform 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                  },
+                }}
                 variant="contained"
                 color="primary"
                 component={RouterLink}
@@ -41,6 +47,13 @@ function LandingPage() {
                 Sign Up
               </Button>
               <Button
+                style={{ backgroundColor: '#98FB98', color: 'black' }}
+                sx={{
+                  transition: 'transform 0.3s',
+                  '&:hover': {
+                    transform: 'scale(1.1)',
+                  },
+                }}
                 variant="contained"
                 color="primary"
                 href="https://apps.apple.com/"
