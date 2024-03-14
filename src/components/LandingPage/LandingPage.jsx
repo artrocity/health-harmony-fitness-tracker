@@ -7,9 +7,6 @@ import HorizontalNav from '../HorizontalNav/HorizontalNav';
 // Import Custom CSS
 import './LandingPage.css';
 
-// Import custom image
-import workingoutIMG from './images/person_squatting.jpg';
-
 function LandingPage() {
   return (
     <>
@@ -29,9 +26,6 @@ function LandingPage() {
               <br />
               between how you feel and your daily fitness
             </p>
-          </div>
-          <div className="landing-page-image">
-            <img src={workingoutIMG} alt="picture of woman working out" />
           </div>
         </div>
       </div>

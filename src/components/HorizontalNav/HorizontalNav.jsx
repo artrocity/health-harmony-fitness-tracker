@@ -1,3 +1,4 @@
+// Import 3rd Party Libraries
 import React from 'react';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
@@ -5,8 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
+// Import Custom Image
+import logoImage from './Images/Logo.png';
+
 function HorizontalNav() {
-  const location = useLocation(); // Hook to access the current location
+  const location = useLocation();
 
   // Function to determine if the route is active
   const isActive = (pathname) => location.pathname === pathname;
@@ -19,7 +23,11 @@ function HorizontalNav() {
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           <Button color="inherit" component={RouterLink} to="/home">
-            Logo
+            <img
+              src={logoImage}
+              alt="Logo"
+              style={{ maxWidth: 120, maxHeight: '100%' }}
+            />
           </Button>
         </Typography>
         {['home', 'features', 'about', 'contact', 'login'].map((path) => (
