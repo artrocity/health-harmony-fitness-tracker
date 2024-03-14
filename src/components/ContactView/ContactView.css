@@ -1,0 +1,54 @@
+.contact-page-container {
+  width: 80%;
+  height: 75vh;
+  display: flex;
+  gap: 10px;
+  margin: 10px auto;
+}
+
+.contact-right-container,
+.contact-left-container {
+  width: 50%;
+  height: 75vh;
+}
+
+.contact-left-container {
+  background-color: #782cf6;
+}
+
+.contact-right-container {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.contact-left-header,
+.contact-info-item {
+  text-align: center;
+  color: white;
+}
+
+.contact-left-header {
+  font-size: 48px;
+  padding: 30px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10%;
+}
+
+.contact-left-paragraph {
+  font-size: 30px;
+}
+
+.contact-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
