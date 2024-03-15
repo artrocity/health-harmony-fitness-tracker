@@ -1,7 +1,7 @@
 // Import 3rd Party Libraries
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Import Logo Image
 import logoImage from './images/loginLogo.png';
@@ -21,6 +21,11 @@ function LoginView() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(user);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
   };
 
   return (
@@ -56,24 +61,28 @@ function LoginView() {
               <TextField
                 label="Username"
                 variant="outlined"
+                name="username"
                 fullWidth
                 value={user.username}
-                required
+                onChange={handleChange}
                 style={{
                   backgroundColor: 'white',
                 }}
+                required
               ></TextField>
             </Grid>
             <Grid item xs={12}>
               <TextField
                 label="Password"
+                name="password"
                 variant="outlined"
                 fullWidth
                 value={user.password}
-                required
+                onChange={handleChange}
                 style={{
                   backgroundColor: 'white',
                 }}
+                required
                 type="password"
               ></TextField>
             </Grid>
