@@ -60,16 +60,8 @@ function App() {
             <ContactView />
           </Route>
 
-          <Route exact path="/login">
-            <LoginView />
-          </Route>
-
           <Route exact path="/register">
             <RegisterView />
-          </Route>
-
-          <Route>
-            <View404 />
           </Route>
 
           {/* If user is logged in */}
@@ -92,6 +84,10 @@ function App() {
           >
             <UserDashboard />
           </ProtectedRoute>
+
+          <Route>
+            <View404 />
+          </Route>
         </Switch>
       </div>
     </Router>

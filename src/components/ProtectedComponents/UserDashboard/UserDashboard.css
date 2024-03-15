@@ -1,0 +1,11 @@
+.dashboard-page-container {
+  display: flex;
+}
+
+.dashboard-right-container {
+  background-color: white;
+  width: 80%;
+  height: 98vh;
+  margin: 10px auto;
+  text-align: center;
+}
