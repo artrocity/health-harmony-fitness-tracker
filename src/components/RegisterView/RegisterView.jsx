@@ -43,6 +43,9 @@ function RegisterView() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('New User: ', newUser);
+    // Submit the information
+
+    // Log the user in with the provided information
   };
 
   return (
