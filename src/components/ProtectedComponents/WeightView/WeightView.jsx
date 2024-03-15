@@ -6,9 +6,6 @@ import { useSelector } from 'react-redux';
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
-// Import Custom CSS
-import './UserDashboard.css';
-
 function WeightView() {
   return (
     <>

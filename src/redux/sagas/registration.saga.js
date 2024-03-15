@@ -10,8 +10,16 @@ function* registerUser(action) {
     // passes user registration information to the server
     yield axios.post('/api/user/register', action.payload);
 
+    const username = action.payload.username;
+    const password = action.payload.plain_password;
+
+    const loginInfo = {
+      username: username,
+      password: password,
+    };
+
     // automatically log a user in after registration
-    yield put({ type: 'LOGIN', payload: action.payload });
+    yield put({ type: 'LOGIN', payload: loginInfo });
 
     // set to 'login' mode so they see the login screen
     yield put({ type: 'SET_TO_LOGIN_MODE' });

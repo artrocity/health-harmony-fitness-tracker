@@ -94,7 +94,7 @@ function App() {
             <WeightView />
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/user/symptom">
+          <ProtectedRoute exact path="/user/symptoms">
             <SymptomView />
           </ProtectedRoute>
 

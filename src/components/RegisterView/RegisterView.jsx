@@ -1,6 +1,7 @@
 // Import 3rd Party Libraries
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Link as RouterLink } from 'react-router-dom';
 
 // Import Images
@@ -33,6 +34,7 @@ function RegisterView() {
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -41,13 +43,15 @@ function RegisterView() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('New User: ', newUser);
 
     // Submit the information to worker saga
     dispatch({
       type: 'REGISTER',
       payload: newUser,
     });
+
+    // Redirect to the user dashboard page
+    history.push('/user/dashboard');
   };
 
   return (

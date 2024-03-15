@@ -14,7 +14,7 @@ function SymptomView() {
           <VerticalNav />
         </div>
         <div className="dashboard-right-container">
-          <h1>Symptom View</h1>
+          <h1>Symptoms View</h1>
         </div>
       </div>
     </>

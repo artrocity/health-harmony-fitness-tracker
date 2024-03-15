@@ -1,5 +1,6 @@
 // Import Modules/Libraries
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -25,9 +26,17 @@ import logoImage from '../../HorizontalNav/Images/Logo.png';
 
 function VerticalNav() {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   // Function to determine if route is active
   const isActive = (pathname) => location.pathname === pathname;
+
+  const handleLogout = () => {
+    console.log('Logging out');
+    dispatch({
+      type: 'LOGOUT',
+    });
+  };
 
   const navItems = [
     { text: 'Dashboard', icon: <DashboardIcon />, path: '/user/dashboard' },
@@ -36,7 +45,6 @@ function VerticalNav() {
     { text: 'Weight', icon: <ScaleIcon />, path: '/user/weight' },
     { text: 'Symptoms', icon: <HealthAndSafetyIcon />, path: '/user/symptoms' },
     { text: 'User Profile', icon: <AccountBoxIcon />, path: '/user/profile' },
-    { text: 'Logout', icon: <LogoutIcon />, path: '/logout', action: true },
   ];
 
   return (
@@ -67,20 +75,37 @@ function VerticalNav() {
           <ListItem
             button
             key={item.text}
-            component={item.action ? undefined : RouterLink}
-            to={item.action ? undefined : item.path}
+            component={RouterLink}
+            to={item.path}
             selected={isActive(item.path)}
             sx={{
-              color: '#fff',
+              color: 'white',
               marginLeft: '10px',
               marginTop: '5px',
               '&:hover': { backgroundColor: '#782cf6' },
+              backgroundColor: isActive(item.path) ? '#782cf6' : 'transparent',
             }}
           >
             <ListItemIcon sx={{ color: '#fff' }}>{item.icon}</ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
+        <ListItem
+          button
+          key="Logout"
+          sx={{
+            color: '#fff',
+            marginLeft: '10px',
+            marginTop: '5px',
+            '&:hover': { backgroundColor: '#782cf6' },
+          }}
+          onClick={handleLogout}
+        >
+          <ListItemIcon sx={{ color: '#fff' }}>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
       </List>
     </Box>
   );
