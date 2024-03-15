@@ -98,8 +98,8 @@ function RegisterView() {
                   variant="outlined"
                   value={newUser.username}
                   onChange={handleChange}
-                  required
                   style={{ backgroundColor: 'white' }}
+                  required
                 ></TextField>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -110,8 +110,8 @@ function RegisterView() {
                   variant="outlined"
                   value={newUser.password}
                   onChange={handleChange}
-                  required
                   style={{ backgroundColor: 'white' }}
+                  required
                 ></TextField>
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -129,6 +129,7 @@ function RegisterView() {
                   label="Height"
                   name="height"
                   type="number"
+                  variant="outlined"
                   value={newUser.height}
                   onChange={handleChange}
                   InputProps={{
@@ -136,7 +137,6 @@ function RegisterView() {
                       <InputAdornment position="end">Inches</InputAdornment>
                     ),
                   }}
-                  variant="outlined"
                   style={{ backgroundColor: 'white' }}
                   required
                 />
@@ -146,6 +146,7 @@ function RegisterView() {
                   label="Weight"
                   name="weight"
                   type="number"
+                  variant="outlined"
                   value={newUser.weight}
                   onChange={handleChange}
                   InputProps={{
@@ -153,7 +154,6 @@ function RegisterView() {
                       <InputAdornment position="end">lbs</InputAdornment>
                     ),
                   }}
-                  variant="outlined"
                   style={{ backgroundColor: 'white' }}
                   required
                 />
@@ -163,6 +163,7 @@ function RegisterView() {
                   label="Goal Weight"
                   name="goalWeight"
                   type="number"
+                  variant="outlined"
                   value={newUser.goalWeight}
                   onChange={handleChange}
                   InputProps={{
@@ -170,7 +171,6 @@ function RegisterView() {
                       <InputAdornment position="end">lbs</InputAdornment>
                     ),
                   }}
-                  variant="outlined"
                   style={{ backgroundColor: 'white' }}
                   required
                 />

@@ -39,10 +39,11 @@ function HorizontalNav() {
             sx={{
               '&:hover': { backgroundColor: '#782cf6' },
               backgroundColor: isActive(`/${path}`) ? '#782cf6' : 'transparent',
+              margin: '0 4px',
             }}
           >
-            {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
             {/* Capitalize the first letter */}
+            {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
           </Button>
         ))}
       </Toolbar>
