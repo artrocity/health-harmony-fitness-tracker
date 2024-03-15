@@ -1,10 +1,7 @@
 // Import 3rd Party Libraries
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-
-// Import Components
-import HorizontalNav from '../HorizontalNav/HorizontalNav';
 
 // Import Images
 import logoImage from '../LoginView/images/loginLogo.png';
@@ -28,12 +25,14 @@ function RegisterView() {
   const [newUser, setNewUser] = useState({
     name: '',
     username: '',
-    password: '',
+    plain_password: '',
     height: '',
     weight: '',
     goalWeight: '',
     fitnessLevel: '',
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,9 +42,12 @@ function RegisterView() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('New User: ', newUser);
-    // Submit the information
 
-    // Log the user in with the provided information
+    // Submit the information to worker saga
+    dispatch({
+      type: 'REGISTER',
+      payload: newUser,
+    });
   };
 
   return (
