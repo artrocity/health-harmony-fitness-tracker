@@ -19,8 +19,7 @@ import View404 from '../View404/View404';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // Import Protected Components
-import VerticalNav from '../ProtectedComponents/VerticalNav/VerticalNav';
-// import UserDashboard from '../ProtectedComponents/UserDashboard/UserDashboard';
+import UserDashboard from '../ProtectedComponents/UserDashboard/UserDashboard';
 // import FoodView from '../ProtectedComponents/FoodView/FoodView';
 // import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
 // import WeightView from '../ProtectedComponents/WeightView/WeightView';
@@ -69,33 +68,30 @@ function App() {
             <RegisterView />
           </Route>
 
-          <Route exact path="/users">
-            <VerticalNav />
-          </Route>
-
           <Route>
             <View404 />
           </Route>
 
-          {/* Protected Routes */}
-          {/* <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
-            <UserPage />
-          </ProtectedRoute> */}
-
+          {/* If user is logged in */}
           <Route exact path="/login">
             {user.id ? (
               // If the user is already logged in,
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/user/dashboard" />
             ) : (
               // Otherwise, show the login page
               <LoginView />
             )}
           </Route>
+
+          {/* Protected Routes */}
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user/dashboard"
+          >
+            <UserDashboard />
+          </ProtectedRoute>
         </Switch>
       </div>
     </Router>
