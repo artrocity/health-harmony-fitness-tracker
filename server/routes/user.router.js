@@ -25,9 +25,8 @@ router.post('/register', (req, res, next) => {
     goalWeight,
     fitnessLevel,
   } = req.body;
-  console.log('Plain Password', plain_password);
+
   const password = encryptLib.encryptPassword(plain_password);
-  console.log('Password: ', password);
 
   const queryValues = [
     name,
