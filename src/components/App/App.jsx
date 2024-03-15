@@ -6,12 +6,9 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
-// import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-// Import Components
+// Import  Unprotected Components
 import LandingPage from '../LandingPage/LandingPage';
 import FeaturesView from '../FeaturesView/FeaturesView';
 import AboutView from '../AboutView/AboutView';
@@ -19,6 +16,15 @@ import ContactView from '../ContactView/ContactView';
 import LoginView from '../LoginView/LoginView';
 import RegisterView from '../RegisterView/RegisterView';
 import View404 from '../View404/View404';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+
+// Import Protected Components
+import VerticalNav from '../ProtectedComponents/VerticalNav/VerticalNav';
+// import UserDashboard from '../ProtectedComponents/UserDashboard/UserDashboard';
+// import FoodView from '../ProtectedComponents/FoodView/FoodView';
+// import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
+// import WeightView from '../ProtectedComponents/WeightView/WeightView';
+// import SymptomsView from '../ProtectedComponents/SymptomView/SymptomView';
 
 // Import Custom CSS
 import './App.css';
@@ -61,6 +67,10 @@ function App() {
 
           <Route exact path="/register">
             <RegisterView />
+          </Route>
+
+          <Route exact path="/users">
+            <VerticalNav />
           </Route>
 
           <Route>
