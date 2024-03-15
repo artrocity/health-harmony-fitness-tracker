@@ -107,10 +107,10 @@ function RegisterView() {
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Password"
-                  name="password"
+                  name="plain_password"
                   type="password"
                   variant="outlined"
-                  value={newUser.password}
+                  value={newUser.plain_password}
                   onChange={handleChange}
                   style={{ backgroundColor: 'white' }}
                   required

@@ -1,5 +1,6 @@
 // Import 3rd Party Libraries
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -18,9 +19,16 @@ function LoginView() {
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(user);
+    console.log('User: ', user);
+
+    dispatch({
+      type: 'LOGIN',
+      payload: user,
+    });
   };
 
   const handleChange = (event) => {
