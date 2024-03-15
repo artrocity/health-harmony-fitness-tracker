@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
-function ExerciseView() {
+function UserProfileView() {
   return (
     <>
       <div className="dashboard-page-container">
@@ -14,11 +14,11 @@ function ExerciseView() {
           <VerticalNav />
         </div>
         <div className="dashboard-right-container">
-          <h1>Exercise View</h1>
+          <h1>User Profile View</h1>
         </div>
       </div>
     </>
   );
 }
 
-export default ExerciseView;
+export default UserProfileView;

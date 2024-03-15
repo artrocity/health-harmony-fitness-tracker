@@ -20,10 +20,11 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 // Import Protected Components
 import UserDashboard from '../ProtectedComponents/UserDashboard/UserDashboard';
-// import FoodView from '../ProtectedComponents/FoodView/FoodView';
-// import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
-// import WeightView from '../ProtectedComponents/WeightView/WeightView';
-// import SymptomsView from '../ProtectedComponents/SymptomView/SymptomView';
+import FoodView from '../ProtectedComponents/FoodView/FoodView';
+import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
+import WeightView from '../ProtectedComponents/WeightView/WeightView';
+import SymptomView from '../ProtectedComponents/SymptomView/SymptomView';
+import UserProfileView from '../ProtectedComponents/UserProfileView/UserProfileView';
 
 // Import Custom CSS
 import './App.css';
@@ -77,12 +78,32 @@ function App() {
           </Route>
 
           {/* Protected Routes */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user/dashboard"
-          >
+          <ProtectedRoute exact path="/user/dashboard">
             <UserDashboard />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/food">
+            <FoodView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/exercise">
+            <ExerciseView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/weight">
+            <WeightView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/symptom">
+            <SymptomView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/weight">
+            <WeightView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/profile">
+            <UserProfileView />
           </ProtectedRoute>
 
           <Route>
