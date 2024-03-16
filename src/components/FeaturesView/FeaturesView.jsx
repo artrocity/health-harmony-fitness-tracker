@@ -20,33 +20,35 @@ function FeaturesView() {
         <div className="horizontal-nav-container">
           <HorizontalNav />
         </div>
-        <h1 className="features-page-header">
-          Unleash The Power Of Our Revolutionary <br />
-          Fitness App
-        </h1>
-        <div className="features-page-container">
-          {/* Calories */}
-          <div className="feature">
-            <h3 className="feature-header">Calorie Tracker</h3>
-            <img src={calorieImage} alt="picture of a pizza" />
-          </div>
+        <div className="feature-right-container">
+          <h1 className="features-page-header">
+            Unleash The Power Of Our Revolutionary <br />
+            Fitness App
+          </h1>
+          <div className="features-page-container">
+            {/* Calories */}
+            <div className="feature">
+              <h3 className="feature-header">Calorie Tracker</h3>
+              <img src={calorieImage} alt="picture of a pizza" />
+            </div>
 
-          {/* Weight Management */}
-          <div className="feature">
-            <h3 className="feature-header">Weight Management</h3>
-            <img src={weightImage} alt="picture of a weight scale" />
-          </div>
+            {/* Weight Management */}
+            <div className="feature">
+              <h3 className="feature-header">Weight Management</h3>
+              <img src={weightImage} alt="picture of a weight scale" />
+            </div>
 
-          {/* Exercise Tracker */}
-          <div className="feature">
-            <h3 className="feature-header">Exercise Tracker</h3>
-            <img src={exerciseImage} alt="picture of a man working out" />
-          </div>
+            {/* Exercise Tracker */}
+            <div className="feature">
+              <h3 className="feature-header">Exercise Tracker</h3>
+              <img src={exerciseImage} alt="picture of a man working out" />
+            </div>
 
-          {/* Symptoms Log */}
-          <div className="feature">
-            <h3 className="feature-header">Symptoms Log</h3>
-            <img src={symptomImage} alt="Picture of a symptoms log" />
+            {/* Symptoms Log */}
+            <div className="feature">
+              <h3 className="feature-header">Symptoms Log</h3>
+              <img src={symptomImage} alt="Picture of a symptoms log" />
+            </div>
           </div>
         </div>
       </div>

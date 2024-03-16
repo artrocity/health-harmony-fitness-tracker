@@ -3,6 +3,14 @@
   flex-direction: column;
 }
 
+.feature-right-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 80vh;
+  width: 90%;
+  padding: 20px;
+  margin: 10px auto;
+}
+
 .features-page-header {
   text-align: center;
   font-size: 40px;
