@@ -92,16 +92,16 @@ function VerticalNav() {
         ))}
         <ListItem
           button
-          key="Logout"
+          key="white"
           sx={{
-            color: '#fff',
+            color: 'white',
             marginLeft: '10px',
             marginTop: '5px',
             '&:hover': { backgroundColor: '#782cf6' },
           }}
           onClick={handleLogout}
         >
-          <ListItemIcon sx={{ color: '#fff' }}>
+          <ListItemIcon sx={{ color: 'red' }}>
             <LogoutIcon />
           </ListItemIcon>
           <ListItemText primary="Logout" />
