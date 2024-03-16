@@ -14,13 +14,41 @@
 .user-details {
   width: 95%;
   height: 90vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   background-color: white;
   border-radius: 50px;
 }
 
+.user-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.user-details-container,
+.user-bmi-container {
+  min-width: 400px;
+  min-height: 300px;
+  max-width: 400px;
+  max-height: 300px;
+  border-radius: 20px;
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-bmi-image {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+
 .user-info-paragraph {
   color: black;
-  font-size: 30px;
+  font-size: 24px;
+  margin: 12px;
 }
 
 hr {

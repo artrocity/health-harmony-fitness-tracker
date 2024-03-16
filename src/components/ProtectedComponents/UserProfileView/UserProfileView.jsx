@@ -13,6 +13,7 @@ import { TextField, Button, Grid, InputAdornment } from '@mui/material';
 // Import Custom CSS and images
 import './UserProfileView.css';
 import profileImage from './images/profile.webp';
+import bmiImage from './images/bmi.webp';
 
 function UserProfileView() {
   const [isEdit, setIsEdit] = useState(false);
@@ -22,18 +23,32 @@ function UserProfileView() {
     weight: '',
     goalWeight: '',
   });
-
   const user = useSelector((state) => state.user);
-
+  const dispatch = useDispatch();
   const bmi = calcBMI(user.height, user.weight);
 
   const handleEditToggle = () => {
+    if (!isEdit) {
+      setEditUser({
+        name: user.name || '',
+        height: user.height || '',
+        weight: user.weight || '',
+        goalWeight: user.goal_weight || '',
+      });
+    }
     setIsEdit(!isEdit);
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEditUser({ ...editUser, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('Form Submit');
+    dispatch({ type: 'UPDATE_USER_INFO', payload: editUser });
+    setIsEdit(!isEdit);
   };
 
   return (
@@ -52,7 +67,7 @@ function UserProfileView() {
                   className="user-profile-image"
                 />
                 <h1>Edit your profile, {user.name}</h1>
-                <form>
+                <form onSubmit={handleSubmit} style={{ width: '50%' }}>
                   <Grid container spacing={2} direction="column">
                     <Grid item xs={12}>
                       <TextField
@@ -120,6 +135,7 @@ function UserProfileView() {
                   </Grid>
                   <Button
                     variant="outlined"
+                    type="submit"
                     size="large"
                     style={{
                       backgroundColor: 'blue',
@@ -130,7 +146,6 @@ function UserProfileView() {
                       transition: 'transform 0.3s',
                       '&:hover': { transform: 'scale(1.1)' },
                     }}
-                    onClick={handleEditToggle}
                   >
                     Save
                   </Button>
@@ -146,17 +161,35 @@ function UserProfileView() {
                   className="user-profile-image"
                 />
                 <h1>Welcome, {user.name}</h1>
-                <hr />
-                <h2 className="user-header">User Details</h2>
-                <p className="user-info-paragraph">Name: {user.name}</p>
-                <p className="user-info-paragraph">Height: {user.height}</p>
-                <p className="user-info-paragraph">Weight: {user.weight}</p>
-                <p className="user-info-paragraph">
-                  Goal Weight: {user.goal_weight}
-                </p>
+                <div className="user-content-container">
+                  <div className="user-details-container">
+                    <h2 className="user-header">User Details</h2>
+                    <p className="user-info-paragraph">Name: {user.name}</p>
+                    <p className="user-info-paragraph">Height: {user.height}</p>
+                    <p className="user-info-paragraph">Weight: {user.weight}</p>
+                    <p className="user-info-paragraph">
+                      Goal Weight: {user.goal_weight}
+                    </p>
+                  </div>
+                  <div className="user-bmi-container">
+                    <img
+                      src={bmiImage}
+                      alt="picture of body mass index"
+                      className="user-bmi-image"
+                    />
+                    <p className="user-info-paragraph">
+                      Your current BMI is <br />
+                      {bmi}
+                    </p>
+                  </div>
+                </div>
                 <Button
                   variant="outlined"
-                  style={{ backgroundColor: '#782cf6', color: 'white' }}
+                  style={{
+                    backgroundColor: '#782cf6',
+                    color: 'white',
+                    marginTop: '20px',
+                  }}
                   sx={{
                     transition: 'transform 0.3s',
                     '&:hover': { transform: 'scale(1.1)' },
