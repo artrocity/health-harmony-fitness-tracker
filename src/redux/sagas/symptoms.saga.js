@@ -1,12 +1,16 @@
 // Import 3rd Party Libraries
-import 'axios';
+import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 // Worker Saga
 function* fetchSymptoms() {
-  const response = yield axios.get('/api/symptoms');
-
-  yield put({ type: 'FETCH_SYMPTOMS', payload: response.data });
+  try {
+    const response = yield axios.get('/api/symptoms');
+    console.log('RESPONSE DATA: ', response.data);
+    yield put({ type: 'SET_SYMPTOMS', payload: response.data });
+  } catch (error) {
+    console.log('ERROR DURING THE SAGA REDUCER: ', error);
+  }
 }
 
 // Watcher Sagas

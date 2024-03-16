@@ -1,6 +1,6 @@
-const symptomsReducer = (state = {}, action) => {
+const symptomsReducer = (state = [], action) => {
   switch (action.type) {
-    case 'FETCH_SYMPTOMS':
+    case 'SET_SYMPTOMS':
       return action.payload;
     default:
       return state;
