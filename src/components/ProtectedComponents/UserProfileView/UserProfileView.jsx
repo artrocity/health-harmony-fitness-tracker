@@ -48,10 +48,10 @@ function UserProfileView() {
   };
 
   const handleSubmit = (event) => {
-    console.log('EDIT USER INFO: ', editUser);
     event.preventDefault();
     dispatch({ type: 'UPDATE_USER_INFO', payload: editUser });
     setIsEdit(!isEdit);
+    dispatch({ type: 'FETCH_USER' });
   };
 
   return (
