@@ -12,11 +12,11 @@ import './UserDashboard.css';
 function UserDashboard() {
   return (
     <>
-      <div className="dashboard-page-container">
+      <div className="page-container">
         <div className="nav-container">
           <VerticalNav />
         </div>
-        <div className="dashboard-right-container">
+        <div className="page-right-container">
           <h1>User Dashboard</h1>
         </div>
       </div>

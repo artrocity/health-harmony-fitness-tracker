@@ -9,11 +9,11 @@ import VerticalNav from '../VerticalNav/VerticalNav';
 function ExerciseView() {
   return (
     <>
-      <div className="dashboard-page-container">
+      <div className="page-container">
         <div className="nav-container">
           <VerticalNav />
         </div>
-        <div className="dashboard-right-container">
+        <div className="page-right-container">
           <h1>Exercise View</h1>
         </div>
       </div>

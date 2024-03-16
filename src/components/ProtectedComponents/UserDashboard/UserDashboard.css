@@ -1,11 +1,15 @@
-.dashboard-page-container {
+.page-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
-.dashboard-right-container {
-  background-color: black;
+.page-right-container {
+  background-color: white;
   width: 80%;
-  height: 98vh;
+  height: 90vh;
   margin: 10px auto;
   text-align: center;
+  border-radius: 50px;
 }

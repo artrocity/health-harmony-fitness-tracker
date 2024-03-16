@@ -56,11 +56,11 @@ function UserProfileView() {
 
   return (
     <>
-      <div className="dashboard-page-container">
+      <div className="page-container">
         <div className="nav-container">
           <VerticalNav />
         </div>
-        <div className="dashboard-right-container">
+        <div className="page-right-container">
           {isEdit ? (
             <div className="user-profile-container">
               <div className="user-details">
