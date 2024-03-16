@@ -17,13 +17,15 @@ import bmiImage from './images/bmi.webp';
 
 function UserProfileView() {
   const [isEdit, setIsEdit] = useState(false);
+  const user = useSelector((state) => state.user);
   const [editUser, setEditUser] = useState({
     name: '',
     height: '',
     weight: '',
     goalWeight: '',
+    id: user.id,
   });
-  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const bmi = calcBMI(user.height, user.weight);
 

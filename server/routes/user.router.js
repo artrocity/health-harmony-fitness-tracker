@@ -56,6 +56,27 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/update', rejectUnauthenticated, (req, res) => {
+  const { name, height, weight, goalWeight } = req.body;
+  const id = req.body.id;
+
+  const dbQuery = `UPDATE users
+  SET name = $1, height = $2, weight = $3, goal_weight = $4
+  WHERE id = $5;`;
+
+  const queryValues = [name, height, weight, goalWeight, id];
+
+  pool
+    .query(dbQuery, queryValues)
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error('Error updating users: ', error);
+      res.sendStatus(500);
+    });
+});
+
 // clear all server session information about this user
 router.post('/logout', (req, res) => {
   // Use passport's built-in method to log out the user
