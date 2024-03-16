@@ -57,6 +57,7 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
 });
 
 router.put('/update', rejectUnauthenticated, (req, res) => {
+  console.log('PUT ROUTE - BODY: ', req.body);
   const { name, height, weight, goalWeight } = req.body;
   const id = req.body.id;
 

@@ -36,6 +36,7 @@ function UserProfileView() {
         height: user.height || '',
         weight: user.weight || '',
         goalWeight: user.goal_weight || '',
+        id: user.id,
       });
     }
     setIsEdit(!isEdit);
@@ -47,8 +48,8 @@ function UserProfileView() {
   };
 
   const handleSubmit = (event) => {
+    console.log('EDIT USER INFO: ', editUser);
     event.preventDefault();
-    console.log('Form Submit');
     dispatch({ type: 'UPDATE_USER_INFO', payload: editUser });
     setIsEdit(!isEdit);
   };
