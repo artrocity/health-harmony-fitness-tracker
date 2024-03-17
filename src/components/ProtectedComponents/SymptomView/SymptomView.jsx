@@ -34,10 +34,10 @@ import './SymptomView.css';
 
 function SymptomView() {
   const [addSymptom, setAddSymptom] = useState({
-    symptom: '',
-    dateBegan: '',
+    user_id: '',
+    symptom_id: '',
     severity: 1,
-    userID: '',
+    date_began: '',
   });
   const user = useSelector((state) => state.user);
   const symptomsList = useSelector((state) => state.symptoms);
@@ -50,7 +50,7 @@ function SymptomView() {
 
     setAddSymptom((symptom) => ({
       ...symptom,
-      userID: user.id,
+      user_id: user.id,
     }));
   }, [dispatch, user.id]);
 
@@ -61,7 +61,10 @@ function SymptomView() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setAddSymptom({ ...addSymptom, [name]: value });
+    setAddSymptom((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (event) => {
@@ -70,10 +73,10 @@ function SymptomView() {
     dispatch({ type: 'ADD_SYMPTOM', payload: addSymptom });
 
     setAddSymptom({
-      symptom: '',
-      dateBegan: '',
+      symptom_id: '',
+      date_began: '',
       severity: 1,
-      userID: user.id,
+      user_id: user.id,
     });
   };
 
@@ -157,8 +160,8 @@ function SymptomView() {
                       }}
                     >
                       <Select
-                        name="symptom"
-                        value={addSymptom.symptom}
+                        name="symptom_id"
+                        value={addSymptom.symptom_id}
                         onChange={handleChange}
                         displayEmpty
                         required
@@ -168,10 +171,7 @@ function SymptomView() {
                         </MenuItem>
                         {symptomsList &&
                           symptomsList.map((symptom) => (
-                            <MenuItem
-                              key={symptom.id}
-                              value={symptom.symptom_name}
-                            >
+                            <MenuItem key={symptom.id} value={symptom.id}>
                               {symptom.symptom_name}
                             </MenuItem>
                           ))}
@@ -182,9 +182,9 @@ function SymptomView() {
                     <InputLabel>Date Began</InputLabel>
                     <TextField
                       type="date"
-                      name="dateBegan"
+                      name="date_began"
                       variant="outlined"
-                      value={addSymptom.dateBegan}
+                      value={addSymptom.date_began}
                       onChange={handleChange}
                       style={{ backgroundColor: 'white' }}
                       required

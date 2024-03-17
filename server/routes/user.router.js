@@ -8,13 +8,13 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-// Handles Ajax request for user information if user is authenticated
+// GET ROUTES
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
   res.send(req.user);
 });
 
-// Handles POST request with new user data
+// POST ROUTES
 router.post('/register', (req, res, next) => {
   const {
     name,
@@ -56,6 +56,7 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   res.sendStatus(200);
 });
 
+// UPDATE ROUTES
 router.put('/update', rejectUnauthenticated, (req, res) => {
   const { name, height, weight, goalWeight } = req.body;
   const id = req.body.id;

@@ -44,4 +44,25 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// POST ROUTES
+router.post('/', (req, res) => {
+  const { user_id, symptom_id, severity, date_began } = req.body;
+  console.log('REQUEST BODY: ', req.body);
+
+  const dbQuery = `INSERT INTO user_symptoms (user_id, symptom_id, severity, date_began)
+  VALUES($1, $2, $3, $4)`;
+
+  console.log('SQL QUERY: ', dbQuery);
+
+  pool
+    .query(dbQuery, [user_id, symptom_id, severity, date_began])
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log('ERROR ADDING SYMPTOM: ', error);
+    });
+});
+
 module.exports = router;
