@@ -1,3 +1,9 @@
+.symptoms-table {
+  max-width: 650px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
 .symptoms-form-container {
   width: 70%;
   margin: 10px auto;

@@ -20,6 +20,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  const userID = req.params.id;
+  console.log('USER ID: ', userID);
   const dbQuery = `
   SELECT
 	  us.user_id,
@@ -28,10 +30,11 @@ router.get('/:id', (req, res) => {
 	  us.date_began
   FROM user_symptoms us
   JOIN symptoms s ON us.symptom_id = s.id
-  WHERE us.user_id = $1;`;
+  WHERE us.user_id = $1
+  LIMIT 5;`;
 
   pool
-    .query(dbQuery, [req.params.id])
+    .query(dbQuery, [userID])
     .then((result) => {
       res.send(result.rows);
     })

@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import VerticalNav from '../VerticalNav/VerticalNav';
 
 // Import MaterialUI
+// Form
 import {
   Button,
   Typography,
@@ -17,6 +18,17 @@ import {
   TextField,
 } from '@mui/material';
 
+// Table
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@mui/material';
+
 // Import Custom CSS
 import './SymptomView.css';
 
@@ -26,11 +38,14 @@ function SymptomView() {
     dateBegan: '',
     severity: 1,
   });
+  const user = useSelector((state) => state.user);
   const symptomsList = useSelector((state) => state.symptoms);
+  const userSymptomsList = useSelector((state) => state.userSymptoms);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SYMPTOMS' });
+    dispatch({ type: 'FETCH_USER_SYMPTOMS', payload: user.id });
   }, []);
 
   const handleChange = (event) => {
@@ -51,14 +66,53 @@ function SymptomView() {
         <div className="page-right-container">
           <div className="symptoms-container">
             <div className="symptoms-table-container">
-              <h1>This will be a table of previously added symptoms</h1>
+              <Typography
+                variant="h6"
+                style={{
+                  textAlign: 'center',
+                  fontSize: '20px',
+                  fontWeight: 'bolder',
+                  margin: '20px',
+                }}
+              >
+                Symptom History
+              </Typography>
+              <TableContainer
+                component={Paper}
+                sx={{
+                  maxWidth: '600px',
+                  margin: '20px auto',
+                }}
+              >
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Symptom</TableCell>
+                    <TableCell>Severity</TableCell>
+                    <TableCell>Date Began</TableCell>
+                    <TableCell sx={{ color: 'red' }}>Delete</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {userSymptomsList.map((symptom, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{symptom.symptom_name}</TableCell>
+                      <TableCell>{symptom.severity}</TableCell>
+                      <TableCell>{symptom.date_began}</TableCell>
+                      <TableCell>
+                        <Button size="small">Delete</Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </TableContainer>
             </div>
             <div className="symptoms-form-container">
               <Typography
                 variant="h6"
                 style={{
                   textAlign: 'center',
-                  fontSize: '30px',
+                  fontSize: '20px',
+                  fontWeight: 'bolder',
                   margin: '20px',
                 }}
               >

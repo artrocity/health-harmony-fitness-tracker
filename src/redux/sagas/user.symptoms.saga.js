@@ -1,4 +1,5 @@
 import { takeEvery, put } from 'redux-saga/effects';
+import axios from 'axios';
 
 // Worker Saga
 function* fetchUserSymptoms(action) {
@@ -12,7 +13,7 @@ function* fetchUserSymptoms(action) {
 
 // Watcher Saga
 function* userSymptomsSaga() {
-  takeEvery('FETCH_USER_SYMPTOMS', fetchUserSymptoms);
+  yield takeEvery('FETCH_USER_SYMPTOMS', fetchUserSymptoms);
 }
 
 export default userSymptomsSaga;
