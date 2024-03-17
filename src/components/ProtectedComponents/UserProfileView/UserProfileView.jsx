@@ -51,7 +51,6 @@ function UserProfileView() {
     event.preventDefault();
     dispatch({ type: 'UPDATE_USER_INFO', payload: editUser });
     setIsEdit(!isEdit);
-    dispatch({ type: 'FETCH_USER' });
   };
 
   return (
