@@ -37,6 +37,7 @@ function SymptomView() {
     symptom: '',
     dateBegan: '',
     severity: 1,
+    userID: '',
   });
   const user = useSelector((state) => state.user);
   const symptomsList = useSelector((state) => state.symptoms);
@@ -46,7 +47,12 @@ function SymptomView() {
   useEffect(() => {
     dispatch({ type: 'FETCH_SYMPTOMS' });
     dispatch({ type: 'FETCH_USER_SYMPTOMS', payload: user.id });
-  }, []);
+
+    setAddSymptom((symptom) => ({
+      ...symptom,
+      userID: user.id,
+    }));
+  }, [dispatch, user.id]);
 
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
@@ -58,8 +64,17 @@ function SymptomView() {
     setAddSymptom({ ...addSymptom, [name]: value });
   };
 
-  const handleSubmit = () => {
-    console.log('SUBMITTING FORM');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch({ type: 'ADD_SYMPTOM', payload: addSymptom });
+
+    setAddSymptom({
+      symptom: '',
+      dateBegan: '',
+      severity: 1,
+      userID: user.id,
+    });
   };
 
   return (
