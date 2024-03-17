@@ -1,9 +1,9 @@
 import { takeEvery, put } from 'redux-saga/effects';
 
 // Worker Saga
-function* fetchUserSymptoms() {
+function* fetchUserSymptoms(action) {
   try {
-    const response = yield axios.get('/api/symptoms/user');
+    const response = yield axios.get(`/api/symptoms/${action.payload}`);
     yield put({ type: 'SET_USER_SYMPTOMS', payload: response.data });
   } catch (error) {
     console.log('Error Fetching user specific symptoms: ', error);
