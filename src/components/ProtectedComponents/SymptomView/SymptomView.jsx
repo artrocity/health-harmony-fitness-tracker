@@ -80,7 +80,7 @@ function SymptomView() {
               <TableContainer
                 component={Paper}
                 sx={{
-                  maxWidth: '600px',
+                  maxWidth: '750px',
                   margin: '20px auto',
                 }}
               >
@@ -89,7 +89,8 @@ function SymptomView() {
                     <TableCell>Symptom</TableCell>
                     <TableCell>Severity</TableCell>
                     <TableCell>Date Began</TableCell>
-                    <TableCell sx={{ color: 'red' }}>Delete</TableCell>
+                    <TableCell>Why?</TableCell>
+                    <TableCell>Delete</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -99,7 +100,12 @@ function SymptomView() {
                       <TableCell>{symptom.severity}</TableCell>
                       <TableCell>{symptom.date_began}</TableCell>
                       <TableCell>
-                        <Button size="small">Delete</Button>
+                        <Button size="small">View Correlation</Button>
+                      </TableCell>
+                      <TableCell>
+                        <Button size="small" sx={{ color: 'red' }}>
+                          Delete
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
