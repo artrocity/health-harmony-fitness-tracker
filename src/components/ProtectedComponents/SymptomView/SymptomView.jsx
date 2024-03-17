@@ -48,6 +48,11 @@ function SymptomView() {
     dispatch({ type: 'FETCH_USER_SYMPTOMS', payload: user.id });
   }, []);
 
+  const formatDate = (isoDate) => {
+    const date = new Date(isoDate);
+    return date.toISOString().split('T')[0];
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAddSymptom({ ...addSymptom, [name]: value });
@@ -80,7 +85,7 @@ function SymptomView() {
               <TableContainer
                 component={Paper}
                 sx={{
-                  maxWidth: '750px',
+                  maxWidth: '700px',
                   margin: '20px auto',
                 }}
               >
@@ -98,7 +103,7 @@ function SymptomView() {
                     <TableRow key={index}>
                       <TableCell>{symptom.symptom_name}</TableCell>
                       <TableCell>{symptom.severity}</TableCell>
-                      <TableCell>{symptom.date_began}</TableCell>
+                      <TableCell>{formatDate(symptom.date_began)}</TableCell>
                       <TableCell>
                         <Button size="small">View Correlation</Button>
                       </TableCell>
