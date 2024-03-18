@@ -34,8 +34,8 @@ function WeightView() {
         label: 'WEIGHT HISTORY',
         data: userWeightList.map((data) => parseFloat(data.current_weight)),
         fill: false,
-        backgroundColor: 'rgb(75,192,192)',
-        borderColor: 'rgba(75, 192, 192, 0.8)',
+        backgroundColor: 'rgb(120,44,246)',
+        borderColor: 'rgba(120, 44, 246, 0.8)',
       },
     ],
   };
@@ -51,7 +51,7 @@ function WeightView() {
         grid: {
           color: 'black',
         },
-        beginAtZero: true,
+        beginAtZero: false,
       },
     },
     plugins: {
@@ -107,7 +107,7 @@ function WeightView() {
             <p>Goal Weight: {user.goal_weight}</p>
             <p>
               If you lose 2lbs per week, it will take you{' '}
-              <span className="weeks-left-span">{weeksToLose} </span>weeks to
+              <span className="weeks-left-span">{weeksToLose}</span> weeks to
               reach your goal!
             </p>
           </div>
