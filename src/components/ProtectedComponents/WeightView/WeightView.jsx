@@ -7,6 +7,11 @@ import 'chart.js/auto';
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
+// Import Material UI
+
+// Import Custom CSS
+import './WeightView.css';
+
 function WeightView() {
   const user = useSelector((state) => state.user);
   const userWeightList = useSelector((state) => state.userWeight);
@@ -20,14 +25,19 @@ function WeightView() {
 
   // Configure Chart JS parameters
   const weightData = {
-    labels: userWeightList.map((data) => data.date),
-    datasets: {
-      label: 'WEIGHT HISTORY',
-      data: userWeightList.map((data) => data.current_weight),
-      fill: false,
-      backgroundColor: 'rgb(75,192,192)',
-      borderColor: 'rgba(75, 192, 192, 0.2)',
-    },
+    labels: userWeightList.map((data) => {
+      const date = new Date(data.date);
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    }),
+    datasets: [
+      {
+        label: 'WEIGHT HISTORY',
+        data: userWeightList.map((data) => parseFloat(data.current_weight)),
+        fill: false,
+        backgroundColor: 'rgb(75,192,192)',
+        borderColor: 'rgba(75, 192, 192, 0.8)',
+      },
+    ],
   };
 
   const chartOptions = {
@@ -46,8 +56,8 @@ function WeightView() {
         </div>
         <div className="page-right-container">
           <div className="weight-chart-container">
-            <p>{JSON.stringify(userWeightList)}</p>
-            {/* <Line data={weightData} options={chartOptions} /> */}
+            <h1 className="weight-chart-header">Weight History</h1>
+            <Line data={weightData} options={chartOptions} />
           </div>
           <div>
             <h2>This will be a form to add weight to history</h2>
