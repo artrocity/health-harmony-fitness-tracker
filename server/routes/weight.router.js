@@ -7,7 +7,8 @@ const router = express.Router();
 // GET ROUTES
 router.get('/:id', (req, res) => {
   const userID = req.params.id;
-  const dbQuery = 'SELECT * FROM weight WHERE user_id = $1';
+  const dbQuery =
+    'SELECT * FROM weight WHERE user_id = $1 ORDER BY date ASC LIMIT 10;';
 
   pool
     .query(dbQuery, [userID])

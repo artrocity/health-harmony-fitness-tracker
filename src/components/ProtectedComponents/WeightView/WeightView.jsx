@@ -42,11 +42,53 @@ function WeightView() {
 
   const chartOptions = {
     scales: {
+      x: {
+        grid: {
+          color: 'black',
+        },
+      },
       y: {
+        grid: {
+          color: 'black',
+        },
         beginAtZero: true,
       },
     },
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 14,
+            weight: 'bold',
+          },
+        },
+      },
+    },
   };
+
+  // Calculate time until goal weight
+  const currentWeightData = userWeightList[userWeightList.length - 1];
+  const currentWeight = currentWeightData.current_weight;
+  const goalWeight = user.goal_weight;
+
+  function calculateGoalTime(currentWeight, goalWeight) {
+    // Convert weights to numbers to ensure accurate calculations
+    const current = parseFloat(currentWeight);
+    const goal = parseFloat(goalWeight);
+    const weightToLose = current - goal;
+
+    if (weightToLose < 0) {
+      return 'Goal weight already achieved or is less than current weight.';
+    }
+
+    const poundsPerWeek = 2;
+    const weeksToLose = weightToLose / poundsPerWeek;
+    const roundedWeeks = Math.ceil(weeksToLose);
+
+    return roundedWeeks;
+  }
+
+  const weeksToLose = calculateGoalTime(currentWeight, goalWeight);
 
   return (
     <>
@@ -59,8 +101,15 @@ function WeightView() {
             <h1 className="weight-chart-header">Weight History</h1>
             <Line data={weightData} options={chartOptions} />
           </div>
-          <div>
-            <h2>This will be a form to add weight to history</h2>
+          <div className="weight-details-container">
+            <h2>Weight Details</h2>
+            <p>Current Weight: {currentWeight}</p>
+            <p>Goal Weight: {user.goal_weight}</p>
+            <p>
+              If you lose 2lbs per week, it will take you{' '}
+              <span className="weeks-left-span">{weeksToLose} </span>weeks to
+              reach your goal!
+            </p>
           </div>
         </div>
       </div>
