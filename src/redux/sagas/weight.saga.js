@@ -7,7 +7,7 @@ function* fetchUserWeight(action) {
   try {
     // Payload should be the user ID
     const response = yield axios.get(`/api/weight/${action.payload}`);
-    put({ type: 'SET_USER_WEIGHT', payload: response.data });
+    yield put({ type: 'SET_USER_WEIGHT', payload: response.data });
   } catch (error) {
     console.log('ERROR FETCHING USER WEIGHT - SAGA : ', error);
   }
