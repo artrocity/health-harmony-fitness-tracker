@@ -32,6 +32,7 @@ router.get('/:id', (req, res) => {
   FROM user_symptoms us
   JOIN symptoms s ON us.symptom_id = s.id
   WHERE us.user_id = $1
+  ORDER BY us.date_began ASC
   LIMIT 5;`;
 
   pool
