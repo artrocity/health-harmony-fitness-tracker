@@ -80,6 +80,11 @@ function SymptomView() {
     });
   };
 
+  const handleDelete = (symptom) => {
+    console.log('SYMPTOM TO BE DELETED ID: ', symptom);
+    dispatch({ type: 'DELETE_SYMPTOM', payload: symptom });
+  };
+
   return (
     <>
       <div className="page-container">
@@ -117,8 +122,8 @@ function SymptomView() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {userSymptomsList.map((symptom, index) => (
-                    <TableRow key={index}>
+                  {userSymptomsList.map((symptom) => (
+                    <TableRow key={symptom.id}>
                       <TableCell>{symptom.symptom_name}</TableCell>
                       <TableCell>{symptom.severity}</TableCell>
                       <TableCell>{formatDate(symptom.date_began)}</TableCell>
@@ -126,7 +131,11 @@ function SymptomView() {
                         <Button size="small">View Correlation</Button>
                       </TableCell>
                       <TableCell>
-                        <Button size="small" sx={{ color: 'red' }}>
+                        <Button
+                          size="small"
+                          sx={{ color: 'red' }}
+                          onClick={() => handleDelete(symptom)}
+                        >
                           Delete
                         </Button>
                       </TableCell>

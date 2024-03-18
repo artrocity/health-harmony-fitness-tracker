@@ -24,6 +24,7 @@ router.get('/:id', (req, res) => {
   console.log('USER ID: ', userID);
   const dbQuery = `
   SELECT
+    us.id,
 	  us.user_id,
     s.symptom_name,
     us.severity,
@@ -62,6 +63,22 @@ router.post('/', (req, res) => {
     .catch((error) => {
       res.sendStatus(500);
       console.log('ERROR ADDING SYMPTOM: ', error);
+    });
+});
+
+// DELETE ROUTE
+router.delete('/delete/:id', (req, res) => {
+  const symptomID = req.params.id;
+  const dbQuery = 'DELETE FROM user_symptoms WHERE id = $1';
+
+  pool
+    .query(dbQuery, [symptomID])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('ERROR DELETING SYMPTOM - DELETE ROUTE: ', error);
+      res.sendStatus(500);
     });
 });
 

@@ -12,20 +12,9 @@ function* fetchSymptoms() {
   }
 }
 
-function* addSymptom(action) {
-  try {
-    console.log('ACTION PAYLOAD: ', action.payload);
-    yield axios.post('/api/symptoms', action.payload);
-    yield put({ type: 'FETCH_USER_SYMPTOMS', payload: action.payload.user_id });
-  } catch (error) {
-    console.log('ERROR ADDING SYMPTOM - SAGA: ', error);
-  }
-}
-
 // Watcher Sagas
 function* symptomSaga() {
   yield takeEvery('FETCH_SYMPTOMS', fetchSymptoms);
-  yield takeEvery('ADD_SYMPTOM', addSymptom);
 }
 
 export default symptomSaga;
