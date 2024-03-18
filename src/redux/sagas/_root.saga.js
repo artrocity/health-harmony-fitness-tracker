@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import symptomSaga from './symptoms.saga';
 import userSymptomsSaga from './user.symptoms.saga';
+import weightSaga from './weight.saga';
 
 // Bundle all Sagas and export to index.js
 export default function* rootSaga() {
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     userSaga(),
     symptomSaga(),
     userSymptomsSaga(),
+    weightSaga(),
   ]);
 }

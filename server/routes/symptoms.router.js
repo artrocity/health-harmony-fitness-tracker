@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const userID = req.params.id;
-  console.log('USER ID: ', userID);
   const dbQuery = `
   SELECT
     us.id,
