@@ -67,14 +67,11 @@ function App() {
 
           {/* If user is logged in */}
           <Route exact path="/login">
-            {user.id ? (
-              // If the user is already logged in,
-              // redirect to the /user page
-              <Redirect to="/user/dashboard" />
-            ) : (
-              // Otherwise, show the login page
-              <LoginView />
-            )}
+            {user.id ? <Redirect to="/user/dashboard" /> : <LoginView />}
+          </Route>
+
+          <Route exact path="/dashboard">
+            {user.id ? <Redirect to="/user/dashboard" /> : <LoginView />}
           </Route>
 
           {/* Protected Routes */}

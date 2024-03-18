@@ -1,5 +1,6 @@
 // Import 3rd Party Libraries
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation, Link as RouterLink } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 
@@ -7,6 +8,7 @@ import { AppBar, Toolbar, Button, Typography } from '@mui/material';
 import logoImage from './Images/Logo.png';
 
 function HorizontalNav() {
+  const user = useSelector((state) => state.user);
   const location = useLocation();
 
   // Function to determine if the route is active
@@ -27,7 +29,13 @@ function HorizontalNav() {
             />
           </Button>
         </Typography>
-        {['home', 'features', 'about', 'contact', 'login'].map((path) => (
+        {[
+          'home',
+          'features',
+          'about',
+          'contact',
+          user.id ? 'dashboard' : 'login',
+        ].map((path) => (
           <Button
             key={path}
             color="inherit"
