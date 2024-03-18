@@ -1,12 +1,21 @@
 // Import 3rd Party Libraries
-// Import 3rd Party Libraries
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
 function WeightView() {
+  const user = useSelector((state) => state.user);
+  const userWeightList = useSelector((state) => state.userWeight);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user.id) {
+      dispatch({ type: 'FETCH_USER_WEIGHT', payload: user.id });
+    }
+  }, []);
+
   return (
     <>
       <div className="page-container">
