@@ -23,12 +23,12 @@ router.get('/:id', (req, res) => {
 
 // POST ROUTES
 router.post('/', (req, res) => {
-  const { date, weight, user_id } = req.body;
+  const { user_id, current_weight, date } = req.body;
   const dbQuery = `INSERT INTO weight(user_id, current_weight, date)
   VALUES ($1, $2, $3);`;
 
   pool
-    .query(dbQuery, [date, weight, user_id])
+    .query(dbQuery, [user_id, current_weight, date])
     .then((result) => {
       res.sendStatus(201);
     })

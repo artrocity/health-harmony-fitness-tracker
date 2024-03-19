@@ -53,7 +53,15 @@ function AddWeightForm() {
   // Handle Form Submission (Submit Button)
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch({ type: 'ADD_WEIGHT', payload: newWeight });
+    dispatch({ type: 'FETCH_USER_WEIGHT', payload: user.id });
+
+    setNewWeight({
+      date: '',
+      weight: '',
+      user_id: user.id,
+    });
   };
 
   return (
