@@ -27,14 +27,30 @@ import {
   Paper,
 } from '@mui/material';
 
-// Import Custom CSS
-
 function AddWeightForm() {
+  const [newWeight, setNewWeight] = useState({
+    date: '',
+    weight: '',
+  });
   const weightHistoryList = useSelector((state) => state.userWeight);
+  const dispatch = useDispatch();
 
+  // Format Date
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toISOString().split('T')[0];
+  };
+
+  // Handle User Input Changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewWeight({ ...newWeight, [name]: value });
+  };
+
+  // Handle Form Submission (Submit Button)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch({ type: 'ADD_WEIGHT', payload: newWeight });
   };
 
   return (
@@ -95,7 +111,7 @@ function AddWeightForm() {
             >
               Add Weight Entry
             </Typography>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={2} wrap="wrap">
                 <Grid item xs={12} md={6}>
                   <InputLabel>Date</InputLabel>
@@ -103,6 +119,8 @@ function AddWeightForm() {
                     name="date"
                     variant="outlined"
                     type="date"
+                    value={newWeight.date}
+                    onChange={handleChange}
                     style={{ backgroundColor: 'white' }}
                     required
                   ></TextField>
@@ -113,6 +131,8 @@ function AddWeightForm() {
                     name="weight"
                     variant="outlined"
                     type="number"
+                    value={newWeight.weight}
+                    onChange={handleChange}
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end">lbs</InputAdornment>
@@ -125,6 +145,7 @@ function AddWeightForm() {
                 <Grid item xs={12}>
                   <Button
                     variant="outlined"
+                    type="submit"
                     sx={{
                       backgroundColor: '#782cf6',
                       color: 'white',
