@@ -112,36 +112,38 @@ function SymptomView() {
                   margin: '20px auto',
                 }}
               >
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Symptom</TableCell>
-                    <TableCell>Severity</TableCell>
-                    <TableCell>Date Began</TableCell>
-                    <TableCell>Why?</TableCell>
-                    <TableCell>Delete</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {userSymptomsList.map((symptom) => (
-                    <TableRow key={symptom.id}>
-                      <TableCell>{symptom.symptom_name}</TableCell>
-                      <TableCell>{symptom.severity}</TableCell>
-                      <TableCell>{formatDate(symptom.date_began)}</TableCell>
-                      <TableCell>
-                        <Button size="small">View Correlation</Button>
-                      </TableCell>
-                      <TableCell>
-                        <Button
-                          size="small"
-                          sx={{ color: 'red' }}
-                          onClick={() => handleDelete(symptom)}
-                        >
-                          Delete
-                        </Button>
-                      </TableCell>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Symptom</TableCell>
+                      <TableCell>Severity</TableCell>
+                      <TableCell>Date Began</TableCell>
+                      <TableCell>Why?</TableCell>
+                      <TableCell>Delete</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
+                  </TableHead>
+                  <TableBody>
+                    {userSymptomsList.map((symptom) => (
+                      <TableRow key={symptom.id}>
+                        <TableCell>{symptom.symptom_name}</TableCell>
+                        <TableCell>{symptom.severity}</TableCell>
+                        <TableCell>{formatDate(symptom.date_began)}</TableCell>
+                        <TableCell>
+                          <Button size="small">View Correlation</Button>
+                        </TableCell>
+                        <TableCell>
+                          <Button
+                            size="small"
+                            sx={{ color: 'red' }}
+                            onClick={() => handleDelete(symptom)}
+                          >
+                            Delete
+                          </Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
               </TableContainer>
             </div>
             <div className="symptoms-form-container">

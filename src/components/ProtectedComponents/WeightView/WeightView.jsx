@@ -1,6 +1,7 @@
 // Import 3rd Party Libraries
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 
@@ -8,6 +9,7 @@ import 'chart.js/auto';
 import VerticalNav from '../VerticalNav/VerticalNav';
 
 // Import Material UI
+import { Button } from '@mui/material';
 
 // Import Custom CSS
 import './WeightView.css';
@@ -16,6 +18,7 @@ function WeightView() {
   const user = useSelector((state) => state.user);
   const userWeightList = useSelector((state) => state.userWeight);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (user.id) {
@@ -68,7 +71,10 @@ function WeightView() {
 
   // Calculate time until goal weight
   const currentWeightData = userWeightList[userWeightList.length - 1];
-  const currentWeight = currentWeightData.current_weight;
+  let currentWeight = undefined;
+  if (currentWeightData) {
+    currentWeight = currentWeightData.current_weight;
+  }
   const goalWeight = user.goal_weight;
 
   function calculateGoalTime(currentWeight, goalWeight) {
@@ -90,6 +96,11 @@ function WeightView() {
 
   const weeksToLose = calculateGoalTime(currentWeight, goalWeight);
 
+  // Handle add weight click
+  const handleAddClick = () => {
+    history.push('/user/weight/add');
+  };
+
   return (
     <>
       <div className="page-container">
@@ -110,6 +121,20 @@ function WeightView() {
               <span className="weeks-left-span">{weeksToLose}</span> weeks to
               reach your goal!
             </p>
+          </div>
+          <div className="weight-button-container">
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                color: 'white',
+                backgroundColor: '#782cf6',
+                '&:hover': { backgroundColor: '#782cf6', scale: '1.1' },
+              }}
+              onClick={handleAddClick}
+            >
+              Add Weight
+            </Button>
           </div>
         </div>
       </div>

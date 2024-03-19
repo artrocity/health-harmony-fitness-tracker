@@ -23,6 +23,7 @@ import UserDashboard from '../ProtectedComponents/UserDashboard/UserDashboard';
 import FoodView from '../ProtectedComponents/FoodView/FoodView';
 import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
 import WeightView from '../ProtectedComponents/WeightView/WeightView';
+import AddWeightForm from '../ProtectedComponents/WeightView/AddWeightForm/AddWeightForm';
 import SymptomView from '../ProtectedComponents/SymptomView/SymptomView';
 import UserProfileView from '../ProtectedComponents/UserProfileView/UserProfileView';
 
@@ -97,6 +98,10 @@ function App() {
 
           <ProtectedRoute exact path="/user/weight">
             <WeightView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/weight/add">
+            <AddWeightForm />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/user/profile">
