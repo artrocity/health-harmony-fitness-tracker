@@ -13,9 +13,18 @@ function* fetchUserWeight(action) {
   }
 }
 
+function* addWeight(action) {
+  try {
+    yield axios.post('/api/weight', action.payload);
+  } catch (error) {
+    console.log('ERROR ADDING WEIGHT - SAGA: ', error);
+  }
+}
+
 // Watcher Saga
 function* weightSaga() {
   yield takeEvery('FETCH_USER_WEIGHT', fetchUserWeight);
+  yield takeEvery('ADD_WEIGHT', addWeight);
 }
 
 // Export Default

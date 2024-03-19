@@ -21,4 +21,21 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// POST ROUTES
+router.post('/', (req, res) => {
+  const { date, weight, user_id } = req.body;
+  const dbQuery = `INSERT INTO weight(user_id, current_weight, date)
+  VALUES ($1, $2, $3);`;
+
+  pool
+    .query(dbQuery, [date, weight, user_id])
+    .then((result) => {
+      res.sendStatus(201);
+    })
+    .catch((error) => {
+      console.log('ERROR IN SERVER POST ROUTE - ADDING WEIGHT : ', error);
+      res.sendStatus(500);
+    });
+});
+
 module.exports = router;

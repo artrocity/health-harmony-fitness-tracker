@@ -28,11 +28,14 @@ import {
 } from '@mui/material';
 
 function AddWeightForm() {
+  const weightHistoryList = useSelector((state) => state.userWeight);
+  const user = useSelector((state) => state.user);
   const [newWeight, setNewWeight] = useState({
     date: '',
     weight: '',
+    user_id: user.id,
   });
-  const weightHistoryList = useSelector((state) => state.userWeight);
+
   const dispatch = useDispatch();
 
   // Format Date
