@@ -97,8 +97,16 @@ function AddWeightForm() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell align="center">Date</TableCell>
-                    <TableCell align="center">Weight(lbs)</TableCell>
+                    <TableCell
+                      style={{ textAlign: 'center', fontWeight: 'bolder' }}
+                    >
+                      Date
+                    </TableCell>
+                    <TableCell
+                      style={{ textAlign: 'center', fontWeight: 'bolder' }}
+                    >
+                      Weight(lbs)
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
