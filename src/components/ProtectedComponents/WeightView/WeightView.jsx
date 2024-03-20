@@ -39,11 +39,14 @@ function WeightView() {
         fill: false,
         backgroundColor: 'rgb(120,44,246)',
         borderColor: 'rgba(120, 44, 246, 0.8)',
+        maxHeight: '300px',
+        maintainAspectRatio: false,
       },
     ],
   };
 
   const chartOptions = {
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -110,7 +113,9 @@ function WeightView() {
         <div className="page-right-container">
           <div className="weight-chart-container">
             <h1 className="weight-chart-header">Weight History</h1>
-            <Line data={weightData} options={chartOptions} />
+            <div className="chart-container">
+              <Line data={weightData} options={chartOptions} />
+            </div>
           </div>
           <div className="weight-details-container">
             <h2>Weight Details</h2>

@@ -1,6 +1,7 @@
 // Import 3rd party libraries
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Import custom components
 import VerticalNav from '../../VerticalNav/VerticalNav';
@@ -31,12 +32,13 @@ function AddWeightForm() {
   const weightHistoryList = useSelector((state) => state.userWeight);
   const user = useSelector((state) => state.user);
   const [newWeight, setNewWeight] = useState({
-    date: '',
-    weight: '',
     user_id: user.id,
+    current_weight: '',
+    date: '',
   });
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // Format Date
   const formatDate = (isoDate) => {
@@ -50,6 +52,11 @@ function AddWeightForm() {
     setNewWeight({ ...newWeight, [name]: value });
   };
 
+  // Navigate back to main weight page
+  const handleGoBack = () => {
+    history.push('/user/weight');
+  };
+
   // Handle Form Submission (Submit Button)
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -58,9 +65,9 @@ function AddWeightForm() {
     dispatch({ type: 'FETCH_USER_WEIGHT', payload: user.id });
 
     setNewWeight({
-      date: '',
-      weight: '',
       user_id: user.id,
+      current_weight: '',
+      date: '',
     });
   };
 
@@ -90,19 +97,19 @@ function AddWeightForm() {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Weight(lbs)</TableCell>
-                    <TableCell>Edit</TableCell>
+                    <TableCell align="center">Date</TableCell>
+                    <TableCell align="center">Weight(lbs)</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {weightHistoryList &&
                     weightHistoryList.map((entry) => (
                       <TableRow key={entry.id}>
-                        <TableCell>{formatDate(entry.date)}</TableCell>
-                        <TableCell>{entry.current_weight}</TableCell>
-                        <TableCell>
-                          <Button>Edit</Button>
+                        <TableCell align="center">
+                          {formatDate(entry.date)}
+                        </TableCell>
+                        <TableCell align="center">
+                          {entry.current_weight}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -139,10 +146,10 @@ function AddWeightForm() {
                 <Grid item xs={12} md={6}>
                   <InputLabel>Weight</InputLabel>
                   <TextField
-                    name="weight"
+                    name="current_weight"
                     variant="outlined"
                     type="number"
-                    value={newWeight.weight}
+                    value={newWeight.current_weight}
                     onChange={handleChange}
                     InputProps={{
                       endAdornment: (
@@ -153,7 +160,20 @@ function AddWeightForm() {
                     required
                   ></TextField>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={6}>
+                  <Button
+                    variant="outlined"
+                    onClick={handleGoBack}
+                    sx={{
+                      backgroundColor: '#782cf6',
+                      color: 'white',
+                      '&:hover': { scale: '1.2', backgroundColor: '#782cf6' },
+                    }}
+                  >
+                    Back
+                  </Button>
+                </Grid>
+                <Grid item xs={6}>
                   <Button
                     variant="outlined"
                     type="submit"
