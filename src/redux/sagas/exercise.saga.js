@@ -11,9 +11,18 @@ function* fetchUserExercise(action) {
   }
 }
 
+function* addUserExercise(action) {
+  try {
+    yield axios.post('/api/exercise', action.payload);
+  } catch (error) {
+    console.log('ERROR IN ADD EXERCISE SAGA: ', error);
+  }
+}
+
 // Watcher Sagas
 function* exerciseSaga() {
   yield takeEvery('FETCH_USER_EXERCISE', fetchUserExercise);
+  yield takeEvery('ADD_USER_EXERCISE', addUserExercise);
 }
 
 export default exerciseSaga;

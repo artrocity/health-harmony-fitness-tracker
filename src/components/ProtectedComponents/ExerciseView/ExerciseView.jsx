@@ -26,10 +26,10 @@ function ExerciseView() {
   const dispatch = useDispatch();
 
   const [newExercise, setNewExercise] = useState({
-    exercise: '',
-    calories: '',
-    date: '',
     user_id: user.id,
+    exercise: '',
+    calories_burned: '',
+    date: '',
   });
 
   // Initialize user exercise data on load
@@ -92,10 +92,10 @@ function ExerciseView() {
     dispatch({ type: 'ADD_USER_EXERCISE', payload: newExercise });
     dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
     setNewExercise({
-      exercise: '',
-      calories: '',
-      date: '',
       user_id: user.id,
+      exercise: '',
+      calories_burned: '',
+      date: '',
     });
   };
 
@@ -151,8 +151,8 @@ function ExerciseView() {
                 <Grid item xs={12} md={4}>
                   <InputLabel>Calories Burned</InputLabel>
                   <TextField
-                    name="calories"
-                    value={newExercise.calories}
+                    name="calories_burned"
+                    value={newExercise.calories_burned}
                     onChange={handleChange}
                     variant="outlined"
                     type="number"
