@@ -1,5 +1,5 @@
 // Import 3rd Party Libraries
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Import Custom Components
@@ -21,6 +21,25 @@ import {
 import './ExerciseView.css';
 
 function ExerciseView() {
+  const user = useSelector((state) => state.user);
+  const [newExercise, setNewExercise] = useState({
+    exercise: '',
+    calories: '',
+    date: '',
+    user_id: user.id,
+  });
+
+  // Handle use input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setNewExercise({ ...newExercise, [name]: value });
+  };
+
+  // Form submission to add exercise to the database
+  const handleSubmit = (event) => {
+    console.log(event);
+  };
+
   return (
     <>
       <div className="page-container">
@@ -51,6 +70,8 @@ function ExerciseView() {
                   <InputLabel>Exercise Type</InputLabel>
                   <TextField
                     name="exercise"
+                    value={newExercise.exercise}
+                    onChange={handleChange}
                     variant="outlined"
                     type="text"
                     style={{ backgroundColor: 'white' }}
@@ -61,6 +82,8 @@ function ExerciseView() {
                   <InputLabel>Calories Burned</InputLabel>
                   <TextField
                     name="calories"
+                    value={newExercise.calories}
+                    onChange={handleChange}
                     variant="outlined"
                     type="number"
                     style={{ backgroundColor: 'white' }}
@@ -71,6 +94,8 @@ function ExerciseView() {
                   <InputLabel>Date</InputLabel>
                   <TextField
                     name="date"
+                    value={newExercise.date}
+                    onChange={handleChange}
                     variant="outlined"
                     type="date"
                     style={{ backgroundColor: 'white' }}
