@@ -88,7 +88,15 @@ function ExerciseView() {
 
   // Form submission to add exercise to the database
   const handleSubmit = (event) => {
-    console.log(event);
+    event.preventDefault();
+    dispatch({ type: 'ADD_USER_EXERCISE', payload: newExercise });
+    dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
+    setNewExercise({
+      exercise: '',
+      calories: '',
+      date: '',
+      user_id: user.id,
+    });
   };
 
   return (
@@ -126,7 +134,7 @@ function ExerciseView() {
             >
               Add an Exercise
             </Typography>
-            <form>
+            <form onSubmit={handleSubmit}>
               <Grid container spacing={2} wrap="wrap">
                 <Grid item xs={12} md={4}>
                   <InputLabel>Exercise Type</InputLabel>
