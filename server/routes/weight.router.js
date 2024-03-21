@@ -8,12 +8,13 @@ const router = express.Router();
 router.get('/:id', (req, res) => {
   const userID = req.params.id;
   const dbQuery =
-    'SELECT * FROM weight WHERE user_id = $1 ORDER BY date ASC LIMIT 5;';
+    'SELECT * FROM weight WHERE user_id = $1 ORDER BY date DESC LIMIT 5;';
 
   pool
     .query(dbQuery, [userID])
     .then((result) => {
-      res.send(result.rows);
+      const reversedResults = result.rows.reverse();
+      res.send(reversedResults);
     })
     .catch((error) => {
       console.error('ERROR FETCHING USER WEIGHTS - GET ROUTE: ', error);
