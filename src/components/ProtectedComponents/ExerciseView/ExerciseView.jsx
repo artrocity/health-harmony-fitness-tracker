@@ -22,6 +22,8 @@ import './ExerciseView.css';
 
 function ExerciseView() {
   const user = useSelector((state) => state.user);
+  const exerciseList = useSelector((state) => state.exercise);
+  const dispatch = useDispatch();
 
   const [newExercise, setNewExercise] = useState({
     exercise: '',
@@ -29,6 +31,12 @@ function ExerciseView() {
     date: '',
     user_id: user.id,
   });
+
+  useEffect(() => {
+    if (user.id) {
+      dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
+    }
+  }, []);
 
   // Handle use input changes
   const handleChange = (event) => {
@@ -48,10 +56,7 @@ function ExerciseView() {
           <VerticalNav />
         </div>
         <div className="page-right-container">
-          <h1>
-            This will be a circle graph of calories eaten vs remaining or
-            something similar
-          </h1>
+          <h1>{JSON.stringify(exerciseList)}</h1>
 
           <div className="add-weight-form-container">
             <Typography
