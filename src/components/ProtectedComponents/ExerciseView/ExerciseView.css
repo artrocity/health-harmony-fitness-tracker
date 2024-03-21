@@ -2,3 +2,19 @@
   width: 70%;
   margin: 20px auto;
 }
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.exercise-chart-container {
+  width: 70%;
+  max-height: 500px;
+  margin: 0 auto;
+}

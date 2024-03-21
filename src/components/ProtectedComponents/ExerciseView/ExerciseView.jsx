@@ -1,6 +1,8 @@
 // Import 3rd Party Libraries
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Bar } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
@@ -14,8 +16,6 @@ import {
   InputLabel,
   Input,
 } from '@mui/material';
-
-//Import ChartJS
 
 // Import Custom CSS
 import './ExerciseView.css';
@@ -32,11 +32,53 @@ function ExerciseView() {
     user_id: user.id,
   });
 
+  // Initialize user exercise data on load
   useEffect(() => {
     if (user.id) {
       dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
     }
   }, []);
+
+  // Configure Chart.js for Bar Graph
+  const chartData = {
+    labels: exerciseList.map((data) => {
+      const date = new Date(data.date);
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    }),
+    datasets: [
+      {
+        label: 'Calories Burned',
+        data: exerciseList.map((data) => data.calories_burned),
+        backgroundColor: 'rgba(120, 44, 246, 0.8)',
+        borderColor: 'rgba(120, 44, 246, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: 'Calories Burned',
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Date',
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+    },
+  };
 
   // Handle use input changes
   const handleChange = (event) => {
@@ -56,8 +98,22 @@ function ExerciseView() {
           <VerticalNav />
         </div>
         <div className="page-right-container">
-          <h1>{JSON.stringify(exerciseList)}</h1>
-
+          <div className="chart-container">
+            <Typography
+              variant="h6"
+              style={{
+                textAlign: 'center',
+                fontSize: '24px',
+                fontWeight: 'bolder',
+                margin: '20px',
+              }}
+            >
+              Exercise History
+            </Typography>
+            <div className="chart-container">
+              <Bar data={chartData} options={chartOptions} />
+            </div>
+          </div>
           <div className="add-weight-form-container">
             <Typography
               variant="h6"
