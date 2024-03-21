@@ -48,16 +48,6 @@ function ExerciseView() {
             <form>
               <Grid container spacing={2} wrap="wrap">
                 <Grid item xs={12} md={4}>
-                  <InputLabel>Date</InputLabel>
-                  <TextField
-                    name="date"
-                    variant="outlined"
-                    type="date"
-                    style={{ backgroundColor: 'white' }}
-                    required
-                  ></TextField>
-                </Grid>
-                <Grid item xs={12} md={4}>
                   <InputLabel>Exercise Type</InputLabel>
                   <TextField
                     name="exercise"
@@ -73,6 +63,16 @@ function ExerciseView() {
                     name="calories"
                     variant="outlined"
                     type="number"
+                    style={{ backgroundColor: 'white' }}
+                    required
+                  ></TextField>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                  <InputLabel>Date</InputLabel>
+                  <TextField
+                    name="date"
+                    variant="outlined"
+                    type="date"
                     style={{ backgroundColor: 'white' }}
                     required
                   ></TextField>
