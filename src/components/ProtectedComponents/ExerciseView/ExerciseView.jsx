@@ -22,6 +22,7 @@ import './ExerciseView.css';
 
 function ExerciseView() {
   const user = useSelector((state) => state.user);
+
   const [newExercise, setNewExercise] = useState({
     exercise: '',
     calories: '',
