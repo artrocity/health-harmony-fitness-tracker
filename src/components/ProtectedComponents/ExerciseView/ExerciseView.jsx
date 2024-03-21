@@ -89,8 +89,10 @@ function ExerciseView() {
   // Form submission to add exercise to the database
   const handleSubmit = (event) => {
     event.preventDefault();
+
     dispatch({ type: 'ADD_USER_EXERCISE', payload: newExercise });
     dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
+
     setNewExercise({
       user_id: user.id,
       exercise: '',

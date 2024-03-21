@@ -14,6 +14,7 @@ function* fetchUserExercise(action) {
 function* addUserExercise(action) {
   try {
     yield axios.post('/api/exercise', action.payload);
+    yield put({ type: 'FETCH_USER_EXERCISE', payload: action.payload.user_id });
   } catch (error) {
     console.log('ERROR IN ADD EXERCISE SAGA: ', error);
   }
