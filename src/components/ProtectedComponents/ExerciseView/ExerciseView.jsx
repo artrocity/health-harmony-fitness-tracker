@@ -91,7 +91,6 @@ function ExerciseView() {
     event.preventDefault();
 
     dispatch({ type: 'ADD_USER_EXERCISE', payload: newExercise });
-    dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
 
     setNewExercise({
       user_id: user.id,
