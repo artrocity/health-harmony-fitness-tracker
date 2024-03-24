@@ -94,39 +94,50 @@ function FoodView() {
             </form>
           </div>
           <div className="food-results-container">
-            <Typography variant="h6" style={{ textAlign: 'center' }}>
-              Results
-            </Typography>
-            <TableContainer
-              component={Paper}
-              sx={{ maxWidth: '700px', margin: '20px auto' }}
-            >
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Food Name</TableCell>
-                    <TableCell>Food Calories</TableCell>
-                    <TableCell>Serving</TableCell>
-                    <TableCell>Add Food</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {foodItems &&
-                    foodItems.map((item, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{item.food_name}</TableCell>
-                        <TableCell>{item.nf_calories}</TableCell>
-                        <TableCell>
-                          {item.serving_qty} {item.serving_unit}
-                        </TableCell>
-                        <TableCell>
-                          <Button>Add</Button>
-                        </TableCell>
+            {foodItems.length > 0 && (
+              <>
+                <Typography
+                  variant="h6"
+                  style={{
+                    textAlign: 'center',
+                    marginTop: '20px',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Results
+                </Typography>
+                <TableContainer
+                  component={Paper}
+                  sx={{ maxWidth: '700px', margin: '20px auto' }}
+                >
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Food Name</TableCell>
+                        <TableCell>Food Calories</TableCell>
+                        <TableCell>Serving</TableCell>
+                        <TableCell>Add Food</TableCell>
                       </TableRow>
-                    ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                    </TableHead>
+                    <TableBody>
+                      {foodItems &&
+                        foodItems.map((item, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{item.food_name}</TableCell>
+                            <TableCell>{item.nf_calories}</TableCell>
+                            <TableCell>
+                              {item.serving_qty} {item.serving_unit}
+                            </TableCell>
+                            <TableCell>
+                              <Button>Add</Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </>
+            )}
           </div>
         </div>
       </div>
