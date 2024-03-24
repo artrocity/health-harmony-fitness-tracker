@@ -28,12 +28,18 @@ These instructions will get you a copy of the project up and running on your loc
 ● Node
 ● Express
 ● React
-● Redux
-● Sagas
+● React Router DOM
+● React Redux
+● React Redux Saga
 ● PostgreSQL
 ● Material UI
 ● CSS
 ● Axios
+● DOTENV
+● PG
+● Passport
+● Bcrypt
+● Chart.js
 
 ### Installing
 
