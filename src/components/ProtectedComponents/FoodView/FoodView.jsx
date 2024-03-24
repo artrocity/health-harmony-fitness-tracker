@@ -5,6 +5,16 @@ import axios from 'axios';
 
 // Import Material UI
 // Table
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from '@mui/material';
 
 // Form
 import { Grid, TextField, Typography, InputAdornment } from '@mui/material';
@@ -83,12 +93,36 @@ function FoodView() {
               </Grid>
             </form>
           </div>
-          <p>{JSON.stringify(foodItems)}</p>
           <div className="food-results-container">
-            {foodItems &&
-              foodItems.map((item, index) => (
-                <div key={index}>{item.food_name}</div>
-              ))}
+            <Typography variant="h6" style={{ textAlign: 'center' }}>
+              Results
+            </Typography>
+            <TableContainer
+              component={Paper}
+              sx={{ maxWidth: '700px', margin: '20px auto' }}
+            >
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Food Name</TableCell>
+                    <TableCell>Food Calories</TableCell>
+                    <TableCell>Add Food</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {foodItems &&
+                    foodItems.map((item, index) => (
+                      <TableRow key={index}>
+                        <TableCell>{item.food_name}</TableCell>
+                        <TableCell>{item.nf_calories}</TableCell>
+                        <TableCell>
+                          <Button>Add</Button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </div>
         </div>
       </div>
