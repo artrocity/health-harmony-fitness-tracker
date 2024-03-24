@@ -64,7 +64,7 @@ function FoodView() {
         </div>
         <div className="page-right-container">
           <div className="food-history-container">
-            <h1>Food History</h1>
+            <h1>Daily Food Intake</h1>
           </div>
           <div className="food-search-container">
             <Typography variant="h6" style={{ textAlign: 'center' }}>
@@ -106,6 +106,7 @@ function FoodView() {
                   <TableRow>
                     <TableCell>Food Name</TableCell>
                     <TableCell>Food Calories</TableCell>
+                    <TableCell>Serving</TableCell>
                     <TableCell>Add Food</TableCell>
                   </TableRow>
                 </TableHead>
@@ -115,6 +116,9 @@ function FoodView() {
                       <TableRow key={index}>
                         <TableCell>{item.food_name}</TableCell>
                         <TableCell>{item.nf_calories}</TableCell>
+                        <TableCell>
+                          {item.serving_qty} {item.serving_unit}
+                        </TableCell>
                         <TableCell>
                           <Button>Add</Button>
                         </TableCell>
