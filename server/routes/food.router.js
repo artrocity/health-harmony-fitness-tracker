@@ -17,7 +17,7 @@ const todaysDate = getCurrentDate();
 // GET ROUTES
 router.get('/:id', (req, res) => {
   const user_id = req.params.id;
-  const dbQuery = `SELECT * FROM food WHERE date = $1 && user_id = $2;`;
+  const dbQuery = `SELECT * FROM food WHERE date = $1 AND user_id = $2;`;
 
   pool
     .query(dbQuery, [todaysDate, user_id])
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
   pool
     .query(dbQuery, [user_id, food, calories, date])
     .then((result) => {
-      res.status(201);
+      res.sendStatus(201);
     })
     .catch((error) => {
       console.log('ERROR IN POST FOOD ROUTE: ', error);

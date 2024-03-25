@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const symptomsRouter = require('./routes/symptoms.router');
 const weightRouter = require('./routes/weight.router');
 const exerciseRouter = require('./routes/exercise.router');
+const foodRouter = require('./routes/food.router');
 
 // Express Middleware
 app.use(express.json());
@@ -31,6 +32,7 @@ app.use('/api/user', userRouter);
 app.use('/api/symptoms', symptomsRouter);
 app.use('/api/weight', weightRouter);
 app.use('/api/exercise', exerciseRouter);
+app.use('/api/food', foodRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {
