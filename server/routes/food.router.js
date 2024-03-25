@@ -15,11 +15,12 @@ const getCurrentDate = () => {
 const todaysDate = getCurrentDate();
 
 // GET ROUTES
-router.get('/', (req, res) => {
-  const dbQuery = `SELECT * FROM food WHERE date = $1;`;
+router.get('/:id', (req, res) => {
+  const user_id = req.params.id;
+  const dbQuery = `SELECT * FROM food WHERE date = $1 && user_id = $2;`;
 
   pool
-    .query(dbQuery, [todaysDate])
+    .query(dbQuery, [todaysDate, user_id])
     .then((result) => {
       res.send(result.rows);
     })
@@ -30,7 +31,22 @@ router.get('/', (req, res) => {
 });
 
 // POST ROUTES
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  const { user_id, food, calories, date } = req.body;
+  const dbQuery = `
+    INSERT INTO food (user_id, food, calories, date)
+    VALUES ($1, $2, $3, $4);`;
+
+  pool
+    .query(dbQuery, [user_id, food, calories, date])
+    .then((result) => {
+      res.status(201);
+    })
+    .catch((error) => {
+      console.log('ERROR IN POST FOOD ROUTE: ', error);
+      res.sendStatus(500);
+    });
+});
 
 // Export Router
 module.exports = router;
