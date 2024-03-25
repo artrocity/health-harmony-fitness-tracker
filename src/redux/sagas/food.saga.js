@@ -2,6 +2,15 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 // Worker Sagas
+function* fetchFood(action) {
+  try {
+    const response = yield axios.get(`/api/food/${action.payload}`);
+    yield put({ type: 'SET_FOOD', payload: response.data });
+  } catch (error) {
+    console.log('ERROR FETCHING FOOD - SAGA: ', error);
+  }
+}
+
 function* addFood(action) {
   try {
     yield axios.post('/api/food', action.payload);
