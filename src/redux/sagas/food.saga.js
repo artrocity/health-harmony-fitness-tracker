@@ -14,7 +14,7 @@ function* fetchFood(action) {
 function* addFood(action) {
   try {
     yield axios.post('/api/food', action.payload);
-    yield put({ type: 'FETCH_FOOD' });
+    yield put({ type: 'FETCH_FOOD', payload: action.payload.user_id });
   } catch (error) {
     console.log('ERROR ADDING FOOD - SAGA: ', error);
   }

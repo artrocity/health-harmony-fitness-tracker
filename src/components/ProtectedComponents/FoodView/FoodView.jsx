@@ -33,8 +33,6 @@ function FoodView() {
   // ENV Variables for Key and APP ID
   const VITE_NUTRITIONIX_API_KEY = import.meta.env.VITE_NUTRITIONIX_API_KEY;
   const VITE_NUTRITIONIX_APP_ID = import.meta.env.VITE_NUTRITIONIX_APP_ID;
-  console.log('API KEY: ', VITE_NUTRITIONIX_API_KEY);
-  console.log('APP ID: ', VITE_NUTRITIONIX_APP_ID);
 
   // Handle the search of food items from user query
   const handleSearch = async (event) => {
@@ -71,11 +69,13 @@ function FoodView() {
   // Handle adding food from query to database
   const addFood = (item) => {
     const foodDetails = {
-      user: user.id,
+      user_id: user.id,
       food: item.food_name,
       calories: item.nf_calories,
       date: getCurrentDate(),
     };
+
+    console.log('FOOD DETAILS: ', foodDetails);
 
     dispatch({ type: 'ADD_FOOD', payload: foodDetails });
 
