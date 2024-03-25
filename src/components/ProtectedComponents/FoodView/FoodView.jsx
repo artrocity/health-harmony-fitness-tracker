@@ -1,6 +1,6 @@
 // Import 3rd Party Libraries
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 
 // Import Material UI
@@ -24,6 +24,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import VerticalNav from '../VerticalNav/VerticalNav';
 
 function FoodView() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   const [query, setQuery] = useState('');
   const [foodItems, setFoodItems] = useState([]);
 
@@ -54,6 +57,29 @@ function FoodView() {
       console.error('Error fetching food data:', error);
       setFoodItems([]);
     }
+  };
+
+  // Function to format the current date as YYYY-MM-DD
+  const getCurrentDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = `0${today.getMonth() + 1}`.slice(-2);
+    const day = `0${today.getDate()}`.slice(-2);
+    return `${year}-${month}-${day}`;
+  };
+
+  // Handle adding food from query to database
+  const addFood = (item) => {
+    const foodDetails = {
+      user: user.id,
+      food: item.food_name,
+      calories: item.nf_calories,
+      date: getCurrentDate(),
+    };
+
+    dispatch({ type: 'ADD_FOOD', payload: foodDetails });
+
+    setQuery('');
   };
 
   return (
@@ -129,7 +155,7 @@ function FoodView() {
                               {item.serving_qty} {item.serving_unit}
                             </TableCell>
                             <TableCell>
-                              <Button>Add</Button>
+                              <Button onClick={() => addFood(item)}>Add</Button>
                             </TableCell>
                           </TableRow>
                         ))}
