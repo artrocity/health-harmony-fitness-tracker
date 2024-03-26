@@ -23,12 +23,26 @@ import SearchIcon from '@mui/icons-material/Search';
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
+// Import Custom CSS
+import './FoodView.css';
+
 function FoodView() {
+  const food = useSelector((state) => state.food);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const [query, setQuery] = useState('');
   const [foodItems, setFoodItems] = useState([]);
+
+  // Fetch Food List on page load
+  useEffect(() => {
+    if (user.id) {
+      dispatch({ type: 'FETCH_FOOD', payload: user.id });
+    }
+  }, []);
+
+  // Calculate total calories from the food list
+  const totalDailyCalories = food.reduce((acc, item) => acc + item.calories, 0);
 
   // ENV Variables for Key and APP ID
   const VITE_NUTRITIONIX_API_KEY = import.meta.env.VITE_NUTRITIONIX_API_KEY;
@@ -91,6 +105,12 @@ function FoodView() {
         <div className="page-right-container">
           <div className="food-history-container">
             <h1>Daily Food Intake</h1>
+          </div>
+          <div className="daily-calories-container">
+            <Typography variant="h6" style={{ textAlign: 'center' }}>
+              Calories
+            </Typography>
+            <p>{totalDailyCalories}</p>
           </div>
           <div className="food-search-container">
             <Typography variant="h6" style={{ textAlign: 'center' }}>
