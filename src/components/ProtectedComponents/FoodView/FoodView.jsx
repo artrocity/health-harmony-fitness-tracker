@@ -1,6 +1,8 @@
 // Import 3rd Party Libraries
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Doughnut } from 'react-chartjs-2';
+import 'chart.js/auto';
 import axios from 'axios';
 
 // Import Material UI
@@ -41,8 +43,37 @@ function FoodView() {
     }
   }, []);
 
-  // Calculate total calories from the food list
+  // Calculate total calories from the food list, goal calories, and percentage of goal
   const totalDailyCalories = food.reduce((acc, item) => acc + item.calories, 0);
+  const goalCalories = 2200;
+  const goalPercentage = [
+    (totalDailyCalories / goalCalories) * 100,
+    100 - (totalDailyCalories / goalCalories) * 100,
+  ];
+
+  const data = {
+    datasets: [
+      {
+        data: goalPercentage,
+        backgroundColor: ['#782cf6', '#000'],
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const options = {
+    circumference: 180,
+    rotation: -90,
+    cutout: '80%',
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: false,
+      },
+    },
+  };
 
   // ENV Variables for Key and APP ID
   const VITE_NUTRITIONIX_API_KEY = import.meta.env.VITE_NUTRITIONIX_API_KEY;
@@ -104,86 +135,90 @@ function FoodView() {
         </div>
         <div className="page-right-container">
           <div className="food-history-container">
-            <h1>Daily Food Intake</h1>
-          </div>
-          <div className="daily-calories-container">
-            <Typography variant="h6" style={{ textAlign: 'center' }}>
-              Calories
-            </Typography>
-            <p>{totalDailyCalories}</p>
-          </div>
-          <div className="food-search-container">
-            <Typography variant="h6" style={{ textAlign: 'center' }}>
-              Add Food
-            </Typography>
-            <form onSubmit={handleSearch}>
-              <Grid container spacing={2} wrap="wrap">
-                <Grid item xs={12}>
-                  <TextField
-                    label="Search..."
-                    type="text"
-                    variant="outlined"
-                    value={query}
-                    onChange={(event) => setQuery(event.target.value)}
-                    style={{ backgroundColor: 'white', width: '30%' }}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <SearchIcon />
-                        </InputAdornment>
-                      ),
-                    }}
-                    required
-                  ></TextField>
+            <h1 className="daily-calories-header">Daily Food Intake</h1>
+            <div className="daily-calories-container">
+              <p style={{ zIndex: 2 }}>
+                <span>Calories</span> <br /> <br />
+                Current: {totalDailyCalories} <br /> <br /> Goal: {goalCalories}
+              </p>
+              <Doughnut data={data} options={options} />
+            </div>
+            <hr />
+            <div className="food-search-container">
+              <Typography variant="h6" style={{ textAlign: 'center' }}>
+                Add Food
+              </Typography>
+              <form onSubmit={handleSearch}>
+                <Grid container spacing={2} wrap="wrap">
+                  <Grid item xs={12}>
+                    <TextField
+                      label="Search..."
+                      type="text"
+                      variant="outlined"
+                      value={query}
+                      onChange={(event) => setQuery(event.target.value)}
+                      style={{ backgroundColor: 'white', width: '30%' }}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">
+                            <SearchIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                      required
+                    ></TextField>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </form>
-          </div>
-          <div className="food-results-container">
-            {foodItems.length > 0 && (
-              <>
-                <Typography
-                  variant="h6"
-                  style={{
-                    textAlign: 'center',
-                    marginTop: '20px',
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Results
-                </Typography>
-                <TableContainer
-                  component={Paper}
-                  sx={{ maxWidth: '700px', margin: '20px auto' }}
-                >
-                  <Table>
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Food Name</TableCell>
-                        <TableCell>Food Calories</TableCell>
-                        <TableCell>Serving</TableCell>
-                        <TableCell>Add Food</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {foodItems &&
-                        foodItems.map((item, index) => (
-                          <TableRow key={index}>
-                            <TableCell>{item.food_name}</TableCell>
-                            <TableCell>{item.nf_calories}</TableCell>
-                            <TableCell>
-                              {item.serving_qty} {item.serving_unit}
-                            </TableCell>
-                            <TableCell>
-                              <Button onClick={() => addFood(item)}>Add</Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </>
-            )}
+              </form>
+            </div>
+            <div className="food-results-container">
+              {foodItems.length > 0 && (
+                <>
+                  <Typography
+                    variant="h6"
+                    style={{
+                      textAlign: 'center',
+                      marginTop: '20px',
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    Results
+                  </Typography>
+                  <TableContainer
+                    component={Paper}
+                    sx={{ maxWidth: '700px', margin: '20px auto' }}
+                  >
+                    <Table>
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Food Name</TableCell>
+                          <TableCell>Food Calories</TableCell>
+                          <TableCell>Serving</TableCell>
+                          <TableCell>Add Food</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {foodItems &&
+                          foodItems.map((item, index) => (
+                            <TableRow key={index}>
+                              <TableCell>{item.food_name}</TableCell>
+                              <TableCell>{item.nf_calories}</TableCell>
+                              <TableCell>
+                                {item.serving_qty} {item.serving_unit}
+                              </TableCell>
+                              <TableCell>
+                                <Button onClick={() => addFood(item)}>
+                                  Add
+                                </Button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </div>

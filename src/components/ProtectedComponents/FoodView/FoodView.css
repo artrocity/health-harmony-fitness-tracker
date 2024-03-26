@@ -1,6 +1,27 @@
-.daily-calories-container p {
+.daily-calories-container {
+  position: relative;
+  height: 300px;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.daily-calories-container p,
+.daily-calories-container .Typography {
+  position: absolute;
+  z-index: 2;
   color: black;
-  font-weight: bolder;
-  font-size: 48px;
-  margin-top: 5px;
+  margin-top: 50px;
+}
+
+.daily-calories-container span {
+  font-weight: bold;
+}
+
+hr {
+  width: 40%;
+  margin-bottom: 20px;
 }
