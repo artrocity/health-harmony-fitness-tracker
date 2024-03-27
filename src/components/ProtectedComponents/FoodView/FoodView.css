@@ -9,19 +9,18 @@
   margin: 0 auto;
 }
 
+.daily-calories-header {
+  margin-bottom: 0;
+}
+
 .daily-calories-container p,
 .daily-calories-container .Typography {
   position: absolute;
   z-index: 2;
   color: black;
-  margin-top: 50px;
+  margin-top: 75px;
 }
 
 .daily-calories-container span {
   font-weight: bold;
-}
-
-hr {
-  width: 40%;
-  margin-bottom: 20px;
 }

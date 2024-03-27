@@ -35,22 +35,37 @@ function FoodView() {
 
   const [query, setQuery] = useState('');
   const [foodItems, setFoodItems] = useState([]);
+  const [totalCalories, setTotalCalories] = useState(0);
+  const [goalCalories, setGoalCalories] = useState(2200);
+  const [goalPercentage, setGoalPercentage] = useState(0);
 
-  // Fetch Food List on page load
-  useEffect(() => {
+  // Function to fetch food
+  const fetchFoodList = () => {
     if (user.id) {
       dispatch({ type: 'FETCH_FOOD', payload: user.id });
     }
-  }, []);
+  };
 
-  // Calculate total calories from the food list, goal calories, and percentage of goal
-  const totalDailyCalories = food.reduce((acc, item) => acc + item.calories, 0);
-  const goalCalories = 2200;
-  const goalPercentage = [
-    (totalDailyCalories / goalCalories) * 100,
-    100 - (totalDailyCalories / goalCalories) * 100,
-  ];
+  // Fetch Food List on page load
+  useEffect(() => {
+    fetchFoodList();
+  }, [dispatch, user.id]);
 
+  // Calculate percentage of total calories vs goal calories
+  useEffect(() => {
+    const newTotalCalories = food.reduce((acc, item) => acc + item.calories, 0);
+
+    setTotalCalories(newTotalCalories);
+
+    const newGoalPercentage = [
+      (newTotalCalories / goalCalories) * 100,
+      100 - (newTotalCalories / goalCalories) * 100,
+    ];
+
+    setGoalPercentage(newGoalPercentage);
+  }, [food]);
+
+  // Assign chart data and options
   const data = {
     datasets: [
       {
@@ -75,7 +90,7 @@ function FoodView() {
     },
   };
 
-  // ENV Variables for Key and APP ID
+  // ENV variables for Key and APP ID
   const VITE_NUTRITIONIX_API_KEY = import.meta.env.VITE_NUTRITIONIX_API_KEY;
   const VITE_NUTRITIONIX_APP_ID = import.meta.env.VITE_NUTRITIONIX_APP_ID;
 
@@ -139,11 +154,11 @@ function FoodView() {
             <div className="daily-calories-container">
               <p style={{ zIndex: 2 }}>
                 <span>Calories</span> <br /> <br />
-                Current: {totalDailyCalories} <br /> <br /> Goal: {goalCalories}
+                Current: {totalCalories} <br /> <br /> Goal: {goalCalories}
               </p>
               <Doughnut data={data} options={options} />
             </div>
-            <hr />
+            {/* <hr /> */}
             <div className="food-search-container">
               <Typography variant="h6" style={{ textAlign: 'center' }}>
                 Add Food
