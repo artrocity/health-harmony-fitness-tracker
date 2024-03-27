@@ -49,13 +49,14 @@ function FoodView() {
   // Fetch Food List on page load
   useEffect(() => {
     fetchFoodList();
-  }, [dispatch, user.id]);
+  }, []);
 
   // Calculate percentage of total calories vs goal calories
   useEffect(() => {
     const newTotalCalories = food.reduce((acc, item) => acc + item.calories, 0);
 
     setTotalCalories(newTotalCalories);
+    console.log('new total calories: ', totalCalories);
 
     const newGoalPercentage = [
       (newTotalCalories / goalCalories) * 100,
@@ -63,6 +64,7 @@ function FoodView() {
     ];
 
     setGoalPercentage(newGoalPercentage);
+    console.log('goal percentage: ', goalPercentage);
   }, [food]);
 
   // Assign chart data and options
@@ -135,8 +137,6 @@ function FoodView() {
       date: getCurrentDate(),
     };
 
-    console.log('FOOD DETAILS: ', foodDetails);
-
     dispatch({ type: 'ADD_FOOD', payload: foodDetails });
 
     setQuery('');
@@ -158,6 +158,7 @@ function FoodView() {
               </p>
               <Doughnut data={data} options={options} />
             </div>
+            <p>{JSON.stringify(food)}</p>
             {/* <hr /> */}
             <div className="food-search-container">
               <Typography variant="h6" style={{ textAlign: 'center' }}>

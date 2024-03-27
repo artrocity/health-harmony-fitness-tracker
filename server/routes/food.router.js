@@ -12,10 +12,9 @@ const getCurrentDate = () => {
   return `${year}-${month}-${day}`;
 };
 
-const todaysDate = getCurrentDate();
-
 // GET ROUTES
 router.get('/:id', (req, res) => {
+  const todaysDate = getCurrentDate();
   const user_id = req.params.id;
   const dbQuery = `SELECT * FROM food WHERE date = $1 AND user_id = $2;`;
 
