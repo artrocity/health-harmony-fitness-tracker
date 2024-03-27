@@ -158,8 +158,6 @@ function FoodView() {
               </p>
               <Doughnut data={data} options={options} />
             </div>
-            <p>{JSON.stringify(food)}</p>
-            {/* <hr /> */}
             <div className="food-search-container">
               <Typography variant="h6" style={{ textAlign: 'center' }}>
                 Add Food
