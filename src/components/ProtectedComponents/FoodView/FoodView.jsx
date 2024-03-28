@@ -186,7 +186,8 @@ function FoodView() {
             <div className="daily-calories-container">
               <p style={{ zIndex: 2 }}>
                 <span>Calories</span> <br /> <br />
-                Current: {totalCalories} <br /> <br /> Goal: {goalCalories}
+                Current: {Math.floor(totalCalories)} <br /> <br /> Goal:{' '}
+                {goalCalories}
               </p>
               <Doughnut data={data} options={options} />
             </div>
@@ -248,7 +249,9 @@ function FoodView() {
                           foodItems.map((item, index) => (
                             <TableRow key={index}>
                               <TableCell>{item.food_name}</TableCell>
-                              <TableCell>{item.nf_calories}</TableCell>
+                              <TableCell>
+                                {Math.floor(item.nf_calories)}
+                              </TableCell>
                               <TableCell>
                                 {item.serving_qty} {item.serving_unit}
                               </TableCell>
