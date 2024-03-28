@@ -1,15 +1,19 @@
 // Import 3rd Party Libraries
-// Import 3rd Party Libraries
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
 
+// Import Material UI
+import { Grid, Typography } from '@mui/material';
+
 // Import Custom CSS
 import './UserDashboard.css';
 
 function UserDashboard() {
+  const user = useSelector((store) => store.user);
+
   return (
     <>
       <div className="page-container">
@@ -17,7 +21,8 @@ function UserDashboard() {
           <VerticalNav />
         </div>
         <div className="page-right-container">
-          <h1>User Dashboard</h1>
+          {user && user.id ? <h1>Welcome Back, {user.name}!</h1> : ''}
+          <Grid></Grid>
         </div>
       </div>
     </>

@@ -2,6 +2,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // Function to format the current date as YYYY-MM-DD
 const getCurrentDate = () => {
@@ -13,7 +16,7 @@ const getCurrentDate = () => {
 };
 
 // GET ROUTES
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const todaysDate = getCurrentDate();
   const user_id = req.params.id;
   const dbQuery = `SELECT * FROM food WHERE date = $1 AND user_id = $2;`;
@@ -30,7 +33,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST ROUTES
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const { user_id, food, calories, date } = req.body;
   const dbQuery = `
     INSERT INTO food (user_id, food, calories, date)

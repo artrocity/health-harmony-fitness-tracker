@@ -1,11 +1,14 @@
 // Import 3rd Party Libraries
 const express = require('express');
 const pool = require('../modules/pool');
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 const router = express.Router();
 
 // GET ROUTES
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const dbQuery = 'SELECT * FROM symptoms;';
 
   pool
@@ -19,7 +22,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userID = req.params.id;
   const dbQuery = `
   SELECT
@@ -46,7 +49,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST ROUTES
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const { user_id, symptom_id, severity, date_began } = req.body;
   console.log('REQUEST BODY: ', req.body);
 
@@ -67,7 +70,7 @@ router.post('/', (req, res) => {
 });
 
 // DELETE ROUTE
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
   const symptomID = req.params.id;
   const dbQuery = 'DELETE FROM user_symptoms WHERE id = $1';
 

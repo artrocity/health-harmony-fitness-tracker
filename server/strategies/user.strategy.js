@@ -13,7 +13,6 @@ passport.deserializeUser((id, done) => {
     .then((result) => {
       // Handle Errors
       const user = result && result.rows && result.rows[0];
-      console.log('User: ', user);
 
       if (user) {
         // user found

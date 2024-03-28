@@ -1,11 +1,13 @@
 // Import 3rd Party Libraries
 const express = require('express');
 const pool = require('../modules/pool');
-
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 const router = express.Router();
 
 // GET ROUTES
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userID = req.params.id;
   const dbQuery =
     'SELECT * FROM weight WHERE user_id = $1 ORDER BY date DESC LIMIT 5;';
@@ -23,7 +25,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST ROUTES
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const { user_id, current_weight, date } = req.body;
   const dbQuery = `INSERT INTO weight(user_id, current_weight, date)
   VALUES ($1, $2, $3);`;

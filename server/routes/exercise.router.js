@@ -2,9 +2,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 // GET ROUTES
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   const userID = req.params.id;
   const dbQuery =
     'SELECT * FROM exercise WHERE user_id = $1 ORDER BY date DESC LIMIT 5;';
@@ -22,7 +25,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST ROUTES
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   const { user_id, exercise, calories_burned, date } = req.body;
   const dbQuery = `INSERT INTO exercise(user_id, exercise, calories_burned, date)
   VALUES($1, $2, $3, $4);`;
