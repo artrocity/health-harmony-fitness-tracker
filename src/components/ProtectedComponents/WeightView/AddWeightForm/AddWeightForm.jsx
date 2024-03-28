@@ -62,7 +62,6 @@ function AddWeightForm() {
     event.preventDefault();
 
     dispatch({ type: 'ADD_WEIGHT', payload: newWeight });
-    dispatch({ type: 'FETCH_USER_WEIGHT', payload: user.id });
 
     setNewWeight({
       user_id: user.id,

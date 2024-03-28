@@ -15,9 +15,10 @@ function* fetchUserWeight(action) {
 
 function* addWeight(action) {
   try {
-    console.log('ADD WEIGHT PAYLOAD: ', action.payload);
+    console.log('WEIGHT PAYLOAD: ', action.payload);
     // Payload will include: date, weight, user_id
     yield axios.post('/api/weight', action.payload);
+    yield put({ type: 'FETCH_USER_WEIGHT', payload: action.payload.user_id });
   } catch (error) {
     console.log('ERROR ADDING WEIGHT - SAGA: ', error);
   }
