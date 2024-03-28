@@ -13,3 +13,25 @@
   text-align: center;
   border-radius: 50px;
 }
+
+.diet-plan-container {
+  height: 170px;
+  width: 300px;
+  margin-top: 0;
+  margin-top: 0;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.diet-plan-container:hover {
+  transform: scale(1.05);
+}
+
+.diet-header {
+  background-color: black;
+}
