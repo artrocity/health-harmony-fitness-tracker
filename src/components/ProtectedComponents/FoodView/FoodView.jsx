@@ -19,7 +19,13 @@ import {
 } from '@mui/material';
 
 // Form
-import { Grid, TextField, Typography, InputAdornment } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  Typography,
+  InputAdornment,
+  Snackbar,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Import Custom Components
@@ -33,6 +39,7 @@ function FoodView() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [foodItems, setFoodItems] = useState([]);
   const [totalCalories, setTotalCalories] = useState(0);
@@ -138,8 +145,16 @@ function FoodView() {
     };
 
     dispatch({ type: 'ADD_FOOD', payload: foodDetails });
-
+    setSnackbarOpen(true);
     setQuery('');
+  };
+
+  // Handle closing the snackbar
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
@@ -149,6 +164,23 @@ function FoodView() {
           <VerticalNav />
         </div>
         <div className="page-right-container">
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message="Food was successfully added to the database"
+            action={
+              <>
+                <Button
+                  color="secondary"
+                  size="small"
+                  onClick={handleCloseSnackbar}
+                >
+                  UNDO
+                </Button>
+              </>
+            }
+          />
           <div className="food-history-container">
             <h1 className="daily-calories-header">Daily Food Intake</h1>
             <div className="daily-calories-container">
