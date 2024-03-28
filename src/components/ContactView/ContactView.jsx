@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import HorizontalNav from '../HorizontalNav/HorizontalNav';
 
 // Import Material UI Components
-import { TextField, Button, Grid, Typography } from '@mui/material';
+import { TextField, Button, Grid, Typography, Snackbar } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -19,23 +19,31 @@ function ContactView() {
     email: '',
     message: '',
   });
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setNewContact({ ...newContact, [name]: value });
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(newContact);
-    alert(
-      'Thank you for contacting us, a representative will reach out shortly'
-    );
+    setSnackbarOpen(true);
     setNewContact({
       name: '',
       email: '',
       message: '',
     });
+  };
+
+  // Function to close Snackbar
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
@@ -45,6 +53,24 @@ function ContactView() {
           <HorizontalNav />
         </div>
         <div className="contact-page-container">
+          {/* Snackbar Component */}
+          <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={6000}
+            onClose={handleCloseSnackbar}
+            message="Thank you for contacting us, a representative will reach out shortly"
+            action={
+              <>
+                <Button
+                  color="secondary"
+                  size="small"
+                  onClick={handleCloseSnackbar}
+                >
+                  UNDO
+                </Button>
+              </>
+            }
+          />
           <div className="contact-left-container">
             <h1 className="contact-left-header">We'd love to hear from you!</h1>
             <div className="contact-info-item">
