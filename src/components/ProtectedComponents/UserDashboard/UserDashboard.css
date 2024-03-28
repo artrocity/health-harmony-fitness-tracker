@@ -14,10 +14,29 @@
   border-radius: 50px;
 }
 
+.dashboard-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.dashboard-calories-container,
+.dashboard-weight-container {
+  height: 170px;
+  width: 300px;
+  border-radius: 20px;
+  background-color: purple;
+}
+
+.dashboard-activity-container {
+  height: 300px;
+  width: 79%;
+  background-color: red;
+  border-radius: 20px;
+}
+
 .diet-plan-container {
   height: 170px;
   width: 300px;
-  margin-top: 0;
   margin-top: 0;
   border-radius: 20px;
   background-size: cover;
@@ -34,4 +53,8 @@
 
 .diet-header {
   background-color: black;
+}
+
+.diet-external-link {
+  text-decoration: none;
 }
