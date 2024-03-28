@@ -24,7 +24,9 @@
 }
 
 .weeks-left-span {
-  color: red;
+  color: #782cf6;
+  font-weight: bolder;
+  font-size: 20px;
   text-decoration: underline;
 }
 
