@@ -2,34 +2,65 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 30px;
 }
 
 .page-right-container {
+  flex-grow: 1;
   background-color: rgba(255, 255, 255, 0.9);
-  width: 80%;
+  max-width: 80%;
   height: 90vh;
   margin: 10px auto;
   text-align: center;
   border-radius: 50px;
+  overflow: hidden;
 }
 
+/* Dashboard - Main Container for the right side page housing the activity and diet */
+
 .dashboard-container {
-  width: 90%;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  padding: 20px;
   margin: 0 auto;
+}
+
+.summary-container,
+.diet-container {
+  width: 100%;
+}
+
+.summary-container {
+  flex: 6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.diet-container {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .dashboard-calories-container,
 .dashboard-weight-container {
   height: 170px;
-  width: 300px;
+  width: 100%;
   border-radius: 20px;
   background-color: purple;
 }
 
 .dashboard-activity-container {
   height: 300px;
-  width: 79%;
+  width: 100%;
   background-color: red;
   border-radius: 20px;
 }
@@ -57,4 +88,17 @@
 
 .diet-external-link {
   text-decoration: none;
+}
+
+/* Responsiveness for small screen */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .summary-container,
+  .diet-container {
+    flex: none;
+    width: 100%;
+  }
 }
