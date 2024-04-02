@@ -186,7 +186,7 @@ function FoodView() {
             <div className="daily-calories-container">
               <p style={{ zIndex: 2 }}>
                 <span>Calories</span> <br /> <br />
-                Current: {Math.floor(totalCalories)} <br /> <br /> Goal:{' '}
+                Current: {Math.ceil(totalCalories)} <br /> <br /> Goal:{' '}
                 {goalCalories}
               </p>
               <Doughnut data={data} options={options} />

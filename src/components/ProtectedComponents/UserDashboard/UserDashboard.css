@@ -39,6 +39,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 .diet-container {
@@ -55,7 +56,13 @@
   height: 170px;
   width: 100%;
   border-radius: 20px;
-  background-color: purple;
+  background-color: #782cf6;
+  padding-top: 5px;
+}
+
+.dashboard-calories-container p,
+.dashboard-weight-container p {
+  font-size: 30px;
 }
 
 .dashboard-activity-container {

@@ -1,6 +1,6 @@
 // Import 3rd Party Libraries
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
@@ -16,6 +16,32 @@ import lowCarbImage from './images/low_carb.avif';
 
 function UserDashboard() {
   const user = useSelector((store) => store.user);
+  const foodList = useSelector((store) => store.food);
+  const weightList = useSelector((store) => store.userWeight);
+  const exerciseList = useSelector((store) => store.exercise);
+  console.log('FOOD: ', foodList);
+  console.log('weight: ', weightList);
+  console.log('exercise: ', exerciseList);
+
+  const dispatch = useDispatch();
+
+  // Initialize user exercise data on load
+  useEffect(() => {
+    if (user.id) {
+      dispatch({ type: 'FETCH_USER_EXERCISE', payload: user.id });
+      dispatch({ type: 'FETCH_FOOD', payload: user.id });
+      dispatch({ type: 'FETCH_USER_WEIGHT', payload: user.id });
+    }
+  }, []);
+
+  const todaysCalories = foodList.reduce((acc, item) => acc + item.calories, 0);
+
+  // Obtain the last weight entry from the weight list and store it in a variable
+  const currentWeightData = weightList[weightList.length - 1];
+  let currentWeight = undefined;
+  if (currentWeightData) {
+    currentWeight = currentWeightData.current_weight;
+  }
 
   return (
     <>
@@ -36,12 +62,14 @@ function UserDashboard() {
               >
                 <Grid item xs={12} md={6}>
                   <div className="dashboard-calories-container">
-                    <h2>Calories Div</h2>
+                    <h2>Calories Consumed Today</h2>
+                    <p>{Math.ceil(todaysCalories)}</p>
                   </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <div className="dashboard-weight-container">
-                    <h2>Weight Div</h2>
+                    <h2>Last Weigh-In</h2>
+                    <p>{currentWeight}</p>
                   </div>
                 </Grid>
                 <Grid item xs={12} sx={{ margin: '10px auto' }}>
