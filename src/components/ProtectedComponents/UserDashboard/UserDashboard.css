@@ -73,8 +73,8 @@
 .dashboard-activity-container {
   height: 300px;
   width: 100%;
-  background-color: red;
   border-radius: 20px;
+  color: black;
 }
 
 .diet-plan-container {
@@ -95,7 +95,7 @@
 }
 
 .diet-header {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .diet-external-link {

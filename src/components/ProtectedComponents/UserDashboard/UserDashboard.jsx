@@ -1,6 +1,8 @@
 // Import 3rd Party Libraries
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Line } from 'react-chartjs-2';
+import 'chart.js/auto';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
@@ -19,9 +21,7 @@ function UserDashboard() {
   const foodList = useSelector((store) => store.food);
   const weightList = useSelector((store) => store.userWeight);
   const exerciseList = useSelector((store) => store.exercise);
-  console.log('FOOD: ', foodList);
-  console.log('weight: ', weightList);
-  console.log('exercise: ', exerciseList);
+  console.log('EXERCISE LIST: ', exerciseList);
 
   const dispatch = useDispatch();
 
@@ -34,6 +34,7 @@ function UserDashboard() {
     }
   }, []);
 
+  // Obtain today's total calories
   const todaysCalories = foodList.reduce((acc, item) => acc + item.calories, 0);
 
   // Obtain the last weight entry from the weight list and store it in a variable
@@ -43,6 +44,51 @@ function UserDashboard() {
     currentWeight = currentWeightData.current_weight;
   }
 
+  // Configure Chart JS parameters
+  const exerciseData = {
+    labels: exerciseList.map((data) => {
+      const date = new Date(data.date);
+      return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    }),
+    datasets: [
+      {
+        label: 'EXERCISE HISTORY',
+        data: exerciseList.map((data) => parseFloat(data.calories_burned)),
+        fill: false,
+        backgroundColor: 'rgb(120,44,246)',
+        borderColor: 'rgba(120, 44, 246, 0.8)',
+        maxHeight: '300px',
+        maintainAspectRatio: false,
+      },
+    ],
+  };
+
+  const chartOptions = {
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          color: 'black',
+        },
+      },
+      y: {
+        grid: {
+          color: 'black',
+        },
+        beginAtZero: false,
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          font: {
+            size: 14,
+            weight: 'bold',
+          },
+        },
+      },
+    },
+  };
   return (
     <>
       <div className="page-container">
@@ -74,7 +120,8 @@ function UserDashboard() {
                 </Grid>
                 <Grid item xs={12} sx={{ margin: '10px auto' }}>
                   <div className="dashboard-activity-container">
-                    <h2>Activity Div</h2>
+                    <h2>Recent Activity</h2>
+                    <Line data={exerciseData} options={chartOptions} />
                   </div>
                 </Grid>
               </Grid>
