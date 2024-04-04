@@ -109,7 +109,7 @@ function UserDashboard() {
                 <Grid item xs={12} md={6}>
                   <div className="dashboard-calories-container">
                     <h2>Calories Consumed Today</h2>
-                    <p>{Math.ceil(todaysCalories)}</p>
+                    <p>{Math.ceil(todaysCalories)} / 2200</p>
                   </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
