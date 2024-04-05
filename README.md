@@ -1,23 +1,14 @@
 # Health Harmony Fitness Tracker
 
-In today's fast-paced world, managing one's health and fitness often feels overwhelming.People struggle with keeping track of their exercise routines, dietary habits, body weight, and even daily health symptoms.
-I personally was diagnosed with POTs (Postural Orthostatic Tachycardia Syndrome). Some days I feel decent and others are a struggle, and there doesn’t seem to be any link to what causes a good or bad day.
-To solve this problem, I'm excited to present to you Health Harmony. Health Harmony is going to be a comprehensive fitness tracker which is different from other fitness trackers in the sense that not only will it track your daily caloric consumptions and exercise, it will also track your symptoms
+In today's fast-paced world, managing one's health and fitness often feels overwhelming. People struggle with keeping track of their exercise routines, dietary habits, body weight, and even daily health symptoms. Diagnosed with POTs (Postural Orthostatic Tachycardia Syndrome), I've personally experienced days of varied well-being without apparent reason. To address this, I'm excited to introduce Health Harmony—a comprehensive fitness tracker. Unlike other trackers, Health Harmony not only tracks your daily caloric consumptions and exercise but also your symptoms, offering insights into how lifestyle impacts overall well-being.
 
 # Key Features:
 
-- Exercise Log: Users can record their workouts, track calories burned, and see their progress over time. Whether it's a morning jog or a gym session, Health Harmony keeps you motivated and on track.
-- Diet Log: With our comprehensive food database, users can log their meals with ease, keeping track of calories and nutrition. It's like having a dietitian in your pocket.
-- Weight Log: Users can regularly log their weight, set goals, and monitor their journey towards their target weight, be it weight loss, gain, or maintenance.
-- Symptom Tracker: Unique to Health Harmony is our symptom tracker. Users can log daily health symptoms and their severity, gaining insights into how their lifestyle impacts their overall well-being.
-- User Profile: Personalized user profiles that store essential health metrics, including height, current weight, goal weight, and preferences for weight loss or gain.
-
-In the initial implementation, Users will have the ability to
-
-- Add
-- Edit
-- Delete Entries
-- Log in to their user profile
+Exercise Log: Record workouts, track calories burned, and monitor progress over time.
+Diet Log: Log meals with ease using our comprehensive food database and keep track of calories and nutrition.
+Weight Log: Regularly log weight, set goals, and monitor progress.
+Symptom Tracker: Unique to Health Harmony, users can log daily health symptoms and their severity.
+User Profile: Personalized profiles storing essential health metrics and preferences.
 
 ## Getting Started
 
@@ -25,21 +16,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites/Dependencies
 
-● Node
-● Express
-● React
-● React Router DOM
-● React Redux
-● React Redux Saga
-● PostgreSQL
-● Material UI
-● CSS
-● Axios
-● DOTENV
-● PG
-● Passport
-● Bcrypt
-● Chart.js
+Node
+Express
+React + React Router DOM + React Redux + React Redux Saga
+PostgreSQL
+Material UI, CSS
+Axios, DOTENV, PG, Passport, Bcrypt, Chart.js
 
 ### Installing
 
@@ -66,6 +48,14 @@ npm run server
 ```
 npm run client
 ```
+
+### Initial Scope
+
+For detailed information on the initial scope of the project, including goals, expected outcomes, and development phases, visit [Project Scope Document](https://docs.google.com/document/d/1-s9ND7qi7Tr70PEBhdZlGVcd4z12CUa6H2ngZiPuVXg/edit?usp=sharing).
+
+### API Documentation
+
+Comprehensive API documentation, including endpoint descriptions, request formats, and example responses, is available at [API Documentation](https://docs.google.com/document/d/1JmU2eiS7E3sU14L1fVFydM-IJ517bL8wca_7ygkzQFc/edit?usp=sharing).
 
 ## Authors
 
