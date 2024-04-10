@@ -1,6 +1,7 @@
 // Import 3rd Party Libraries
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Import Custom Components
 import VerticalNav from '../VerticalNav/VerticalNav';
@@ -43,6 +44,7 @@ function SymptomView() {
   const symptomsList = useSelector((state) => state.symptoms);
   const userSymptomsList = useSelector((state) => state.userSymptoms);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch({ type: 'FETCH_SYMPTOMS' });
@@ -54,11 +56,13 @@ function SymptomView() {
     }));
   }, [dispatch, user.id]);
 
+  // Function to format the date from the database
   const formatDate = (isoDate) => {
     const date = new Date(isoDate);
     return date.toISOString().split('T')[0];
   };
 
+  // Function to handle user input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setAddSymptom((prev) => ({
@@ -67,6 +71,7 @@ function SymptomView() {
     }));
   };
 
+  // Function to handle user form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -80,9 +85,16 @@ function SymptomView() {
     });
   };
 
+  // Function to handle the deleting of a symptom from the database
   const handleDelete = (symptom) => {
     console.log('SYMPTOM TO BE DELETED ID: ', symptom);
     dispatch({ type: 'DELETE_SYMPTOM', payload: symptom });
+  };
+
+  // Function to handle the clicking of a correlation on a symptom
+  const handleCorrelationClick = (symptom) => {
+    // dispatch
+    history.push('/user/symptoms/correlation');
   };
 
   return (
@@ -129,7 +141,14 @@ function SymptomView() {
                         <TableCell>{symptom.severity}</TableCell>
                         <TableCell>{formatDate(symptom.date_began)}</TableCell>
                         <TableCell>
-                          <Button size="small">View Correlation</Button>
+                          <Button
+                            size="small"
+                            onClickCapture={() =>
+                              handleCorrelationClick(symptom)
+                            }
+                          >
+                            View Correlation
+                          </Button>
                         </TableCell>
                         <TableCell>
                           <Button

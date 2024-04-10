@@ -25,6 +25,7 @@ import ExerciseView from '../ProtectedComponents/ExerciseView/ExerciseView';
 import WeightView from '../ProtectedComponents/WeightView/WeightView';
 import AddWeightForm from '../ProtectedComponents/WeightView/AddWeightForm/AddWeightForm';
 import SymptomView from '../ProtectedComponents/SymptomView/SymptomView';
+import CorrelationView from '../ProtectedComponents/SymptomView/CorrelationView/CorrelationView';
 import UserProfileView from '../ProtectedComponents/UserProfileView/UserProfileView';
 
 // Import Custom CSS
@@ -94,6 +95,10 @@ function App() {
 
           <ProtectedRoute exact path="/user/symptoms">
             <SymptomView />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/user/symptoms/correlation">
+            <CorrelationView />
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/user/weight">

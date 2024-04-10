@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Import Custom Components
-import VerticalNav from '../VerticalNav/VerticalNav';
+import VerticalNav from '../../VerticalNav/VerticalNav';
 
 // Import MaterialUI
 import {
