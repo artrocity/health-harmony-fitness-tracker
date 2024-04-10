@@ -93,7 +93,7 @@ function SymptomView() {
 
   // Function to handle the clicking of a correlation on a symptom
   const handleCorrelationClick = (symptom) => {
-    // dispatch
+    dispatch({ type: 'FETCH_CORRELATION', payload: symptom });
     history.push('/user/symptoms/correlation');
   };
 
