@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import symptoms from './symptoms.reducer';
 import userSymptoms from './user.symptom.reducer';
+import correlation from './correlation.reducer';
 import userWeight from './weight.reducer';
 import exercise from './exercise.reducer';
 import food from './food.reducer';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   user,
   symptoms,
   userSymptoms,
+  correlation,
   userWeight,
   exercise,
   food,
