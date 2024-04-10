@@ -48,6 +48,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get('/correlation', rejectUnauthenticated, (req, res) => {
+  // const {}
+});
+
 // POST ROUTES
 router.post('/', rejectUnauthenticated, (req, res) => {
   const { user_id, symptom_id, severity, date_began } = req.body;

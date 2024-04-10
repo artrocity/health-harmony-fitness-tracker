@@ -79,6 +79,8 @@ function UserProfileView() {
                         fullWidth
                         value={editUser.name}
                         onChange={handleChange}
+                        style={{ backgroundColor: 'white' }}
+                        required
                       ></TextField>
                     </Grid>
                     <Grid item xs={12} sm={6}>
